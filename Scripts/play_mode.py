@@ -14,7 +14,7 @@ class Play_mode():
         self.str_dict = {}
         with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-            for index, row in enumerate(reader):
+            for row in reader:
                 self.str_dict[row[0]] = row[1]
 
     def run(self):

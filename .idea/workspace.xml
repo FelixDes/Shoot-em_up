@@ -16,12 +16,16 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Res/CSV/const.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/settings_class.py" afterDir="false" />
+    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Simple_structure">
+      <change afterPath="$PROJECT_DIR$/Res/Assets/boss_ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Res/Assets/bul.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Res/Assets/enemy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Res/Assets/p_ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Res/Assets/space.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/CSV/strings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/Assets/assets.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +52,16 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Res/CSV" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Res/Assets" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
     </key>
   </component>
@@ -119,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605184168204</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Simple_structure">
+      <created>1605203203659</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605203203659</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +167,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First_commit" />
     <MESSAGE value="File_system_commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="File_system_commit" />
+    <MESSAGE value="Simple_structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simple_structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605183677739">
@@ -165,22 +179,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605183800115" />
-    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1605184167109">
+    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1605204729758">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605184167109" />
+    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605204729758" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605183267702">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605183267702" />
+    <state width="1877" height="168" key="GridCell.Tab.0.bottom" timestamp="1605204759462">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="168" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605204759462" />
+    <state width="1877" height="168" key="GridCell.Tab.0.center" timestamp="1605204759462">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="168" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605204759462" />
+    <state width="1877" height="168" key="GridCell.Tab.0.left" timestamp="1605204759462">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="168" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605204759462" />
+    <state width="1877" height="168" key="GridCell.Tab.0.right" timestamp="1605204759462">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="168" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605204759462" />
     <state x="461" y="163" key="SettingsEditor" timestamp="1605183761666">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605183761666" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605184170466">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605203226748">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605184170466" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605203226748" />
     <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605183522768">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

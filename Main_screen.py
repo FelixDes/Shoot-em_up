@@ -7,7 +7,7 @@ from Scripts.play_mode import Play_mode
 str_dict = {}
 with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    for index, row in enumerate(reader):
+    for row in reader:
         str_dict[row[0]] = row[1]
 
 
