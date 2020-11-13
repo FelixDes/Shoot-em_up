@@ -12,9 +12,8 @@ class Play_mode():
         self.FPS = int(self.str_dict.get("FPS"))
 
     def fill_field(self):
-        self.field = [0] * int(self.str_dict.get("field_h"))
-        for i in range(int(self.str_dict.get("field_h"))):
-            self.field[i] = [0] * int(self.str_dict.get("field_w"))
+        self.field = [[0 for j in range(int(self.str_dict.get("field_w")))]
+                      for i in range(int(self.str_dict.get("field_h")))]
         self.field[-1][len(self.field[-1]) // 2] = "p"
 
     def fill_str(self):
