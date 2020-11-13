@@ -8,7 +8,6 @@ class Play_mode():
         self.str_dict = {}
         self.fill_str()
         self.field = []
-        self.fill_field()
 
         self.player_x_from_list = 0
         self.field_h = int(self.str_dict.get("field_h"))
@@ -20,9 +19,11 @@ class Play_mode():
 
         self.BACK = "Res/Assets/space.png"
 
+        self.fill_field()
+
     def fill_field(self):
-        self.field = [[0 for j in range(int(self.str_dict.get("field_w")))]
-                      for i in range(int(self.str_dict.get("field_h")))]
+        self.field = [[0 for j in range(self.field_w)]
+                      for i in range(self.field_h)]
         self.field[-1][len(self.field[-1]) // 2] = "p"
 
     def fill_str(self):
@@ -51,7 +52,10 @@ class Play_mode():
             pygame.display.update()
 
     def draw_all(self):
-        pass
+        background_surf = pygame.image.load(self.BACK)
+        screen = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
+        screen.blit(background_surf, (0, 0))
+
 
     def p_do(self, dir):
         index_p = self.field[-1].index("p")
