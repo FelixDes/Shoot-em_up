@@ -14,7 +14,7 @@ class Play_mode():
     def fill_field(self):
         self.field = [[0 for j in range(int(self.str_dict.get("field_w")))]
                       for i in range(int(self.str_dict.get("field_h")))]
-        self.field[-1][len(self.field[-1]) // 2] = "p"
+        self.field[-1][self.field[-1] // 2] = "p"
 
     def fill_str(self):
         self.str_dict = {}
