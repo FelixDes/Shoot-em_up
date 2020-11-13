@@ -59,18 +59,16 @@ class Play_mode():
 
     def draw_all(self):
         background_surf = pygame.image.load(self.BACK)
-        background_surf = pygame.transform.rotate(background_surf, 90)
         self.sc.blit(background_surf, (0, 0))
 
         self.solve_p()
         self.solve_bul_p()
 
     def solve_p(self):
-        ship_size_x = 30
-        ship_size_y = 30
+        ship_size_x = 90
+        ship_size_y = 90
 
         player_ship = pygame.image.load(self.PLAYER_SHIP_PNG).convert()
-        player_ship = pygame.transform.rotate(player_ship, 180)
         player_ship_tr = pygame.transform.scale(player_ship, (ship_size_x, ship_size_y))
 
         self.sc.blit(player_ship_tr,
@@ -86,7 +84,6 @@ class Play_mode():
                     if i != 0:  # если ещё на экране
                         self.field[i][j], self.field[i - 1][j] = self.field[i - 1][j], 'bul_p'
                         bull = pygame.image.load(self.BULL_PNG).convert()
-                        bull = pygame.transform.rotate(bull, 180)
                         bull_tr = pygame.transform.scale(bull, (bul_size_x, bul_size_y))
 
                         self.sc.blit(bull_tr,
