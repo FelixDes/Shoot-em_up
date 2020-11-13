@@ -17,7 +17,13 @@ class Play_mode():
 
         self.FPS = int(self.str_dict.get("FPS"))
 
+        self.sc = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
+
         self.BACK = "Res/Assets/space.png"
+        self.PLAYER_SHIP_PNG = "Res/Assets/p_ship.png"
+        self.ENEMY_SHIP_PNG = "Res/Assets/boss_ship.png"
+        self.BOSS_SHIP_PNG = "Res/Assets/enemy.png"
+        self.BULL_PNG = "Res/Assets/bul.png"
 
         self.fill_field()
 
@@ -53,9 +59,21 @@ class Play_mode():
 
     def draw_all(self):
         background_surf = pygame.image.load(self.BACK)
-        screen = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
-        screen.blit(background_surf, (0, 0))
+        background_surf = pygame.transform.rotate(background_surf, 90)
+        self.sc.blit(background_surf, (0, 0))
 
+        self.solve_p()
+
+    def solve_p(self):
+        ship_size_x = 30
+        ship_size_y = 30
+
+        player_ship = pygame.image.load(self.PLAYER_SHIP_PNG).convert()
+        player_ship = pygame.transform.rotate(player_ship, 180)
+        player_ship_tr = pygame.transform.scale(player_ship, (ship_size_x, ship_size_y))
+
+        self.sc.blit(player_ship_tr,
+                     (self.frame_w // 2 + self.player_x_from_list - ship_size_x // 2, self.frame_h - ship_size_y))
 
     def p_do(self, dir):
         index_p = self.field[-1].index("p")
