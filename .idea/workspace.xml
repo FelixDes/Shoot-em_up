@@ -17,8 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/const.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/const.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605206188096</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Field_added">
+      <created>1605287589785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605287589785</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,7 +175,8 @@
     <MESSAGE value="File_system_commit" />
     <MESSAGE value="Simple_structure" />
     <MESSAGE value="Assets_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assets_added" />
+    <MESSAGE value="Field_added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Field_added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605183677739">
@@ -180,10 +187,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605183800115" />
-    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1605206186889">
+    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1605287588349">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605206186889" />
+    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1605287588349" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605269705066">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -208,10 +215,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605183761666" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605206258889">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1605287596335">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605206258889" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605287596335" />
     <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605183522768">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
