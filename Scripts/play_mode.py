@@ -63,6 +63,7 @@ class Play_mode():
         self.sc.blit(background_surf, (0, 0))
 
         self.solve_p()
+        self.solve_bul_p()
 
     def solve_p(self):
         ship_size_x = 30
@@ -73,7 +74,26 @@ class Play_mode():
         player_ship_tr = pygame.transform.scale(player_ship, (ship_size_x, ship_size_y))
 
         self.sc.blit(player_ship_tr,
-                     (self.frame_w // 2 + self.player_x_from_list - ship_size_x // 2, self.frame_h - ship_size_y))
+                     (self.frame_w // 2 + self.player_x_from_list - ship_size_x // 2,
+                      self.frame_h - ship_size_y))  # сделано косячно
+
+    def solve_bul_p(self):
+        bul_size_x = 10
+        bul_size_y = 10
+        for i in range(len(self.field)):
+            for j in range(len(self.field[i])):
+                if self.field[i][j] == "bul_p":  # отрисовка пули
+                    if i != 0:  # если ещё на экране
+                        self.field[i][j], self.field[i - 1][j] = self.field[i - 1][j], 'bul_p'
+                        bull = pygame.image.load(self.BULL_PNG).convert()
+                        bull = pygame.transform.rotate(bull, 180)
+                        bull_tr = pygame.transform.scale(bull, (bul_size_x, bul_size_y))
+
+                        self.sc.blit(bull_tr,
+                                     (self.frame_w * j / len(self.field[i]) + 35,
+                                      self.frame_h * i / len(self.field)))
+                    else:
+                        self.field[i][j] = 0
 
     def p_do(self, dir):
         index_p = self.field[-1].index("p")
@@ -87,3 +107,6 @@ class Play_mode():
                 index_p]
             print(self.field)
             self.player_x_from_list -= 1 / self.field_w * self.frame_w
+        elif dir == 0:
+            self.field[-2][index_p] = 'bul_p'
+            print(self.field)
