@@ -18,6 +18,8 @@ class Play_mode():
 
         self.FPS = int(self.str_dict.get("FPS"))
 
+        self.BACK = "Res/Assets/space.png"
+
     def fill_field(self):
         self.field = [[0 for j in range(int(self.str_dict.get("field_w")))]
                       for i in range(int(self.str_dict.get("field_h")))]
@@ -45,7 +47,11 @@ class Play_mode():
                     self.p_do(-1)
                 elif i.type == pygame.KEYDOWN and (i.key == pygame.K_SPACE or i.key == pygame.K_UP):  # стрельба
                     self.p_do(0)
+            self.draw_all()
             pygame.display.update()
+
+    def draw_all(self):
+        pass
 
     def p_do(self, dir):
         index_p = self.field[-1].index("p")
