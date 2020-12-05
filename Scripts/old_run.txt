@@ -1,0 +1,78 @@
+# def fill_field(self):
+#     self.field = [[0 for j in range(self.field_w)]
+#                   for i in range(self.field_h)]
+#     self.field[-1][len(self.field[-1]) // 2] = "p"
+
+# def run(self):
+#     while True:  # обработка нажатий и инициализация игрового поля, спрайтов
+#         clock = pygame.time.Clock()
+#         clock.tick(self.FPS)
+#
+#         # цикл обработки событий
+#         for i in pygame.event.get():
+#             if i.type == pygame.QUIT:
+#                 exit()
+#             elif i.type == pygame.KEYDOWN and i.key == pygame.K_RIGHT:
+#                 self.p_do(1)
+#             elif i.type == pygame.KEYDOWN and i.key == pygame.K_LEFT:
+#                 self.p_do(-1)
+#             elif i.type == pygame.KEYDOWN and (i.key == pygame.K_SPACE or i.key == pygame.K_UP):  # стрельба
+#                 self.p_do(0)
+#         self.draw_all()
+#         pygame.display.update()
+#
+# def draw_all(self):
+#     background_surf = pygame.image.load(self.BACK)
+#     background_surf = pygame.transform.rotate(background_surf, 90)
+#     self.sc.blit(background_surf, (0, 0))
+#
+#     self.solve_p()
+#     self.solve_bul_p()
+#
+# def solve_p(self):
+#     ship_size_x = 30
+#     ship_size_y = 30
+#
+#     player_ship = pygame.image.load(self.PLAYER_SHIP_PNG).convert()
+#     player_ship = pygame.transform.rotate(player_ship, 180)
+#     player_ship_tr = pygame.transform.scale(player_ship, (ship_size_x, ship_size_y))
+#
+#     self.sc.blit(player_ship_tr,
+#                  (self.frame_w // 2 + self.player_x_from_list - ship_size_x // 2,
+#                   self.frame_h - ship_size_y))  # сделано косячно
+#
+# def solve_bul_p(self):
+#     bul_size_x = 10
+#     bul_size_y = 10
+#     for i in range(len(self.field)):
+#         for j in range(len(self.field[i])):
+#             if self.field[i][j] == "bul_p":  # отрисовка пули
+#                 if i != 0:  # если ещё на экране
+#                     self.field[i][j], self.field[i - 1][j] = self.field[i - 1][j], 'bul_p'
+#                     bull = pygame.image.load(self.BULL_PNG).convert()
+#                     bull = pygame.transform.rotate(bull, 180)
+#                     bull_tr = pygame.transform.scale(bull, (bul_size_x, bul_size_y))
+#
+#                     self.sc.blit(bull_tr,
+#                                  (self.frame_w * j / len(self.field[i]) + bul_size_x * 3.5,
+#                                   self.frame_h * i / len(self.field)))
+#                 else:
+#                     self.field[i][j] = 0
+#
+# def p_do(self, dir):
+#     index_p = self.field[-1].index("p")
+#     if dir == 1 and 0 <= self.field[-1].index("p") <= int(self.str_dict.get('field_w')) - 2:
+#         self.field[-1][index_p], self.field[-1][index_p + 1] = self.field[-1][index_p + 1], self.field[-1][
+#             index_p]
+#         print(self.field)
+#         self.player_x_from_list += 1 / self.field_w * self.frame_w
+#     elif dir == -1 and 1 <= self.field[-1].index("p") <= int(self.str_dict.get('field_w')) - 1:
+#         self.field[-1][index_p], self.field[-1][index_p - 1] = self.field[-1][index_p - 1], self.field[-1][
+#             index_p]
+#         print(self.field)
+#         self.player_x_from_list -= 1 / self.field_w * self.frame_w
+#     elif dir == 0:
+#         bul = ["bul_p", index_p, ]
+#         self.bullet_list +=
+#         self.field[-2][index_p] = 'bul_p'
+#         print(self.field)

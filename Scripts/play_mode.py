@@ -2,111 +2,88 @@ import csv
 
 import pygame
 
+pygame.font.init()
+
+str_dict = {}
+
+
+def fill_str():
+    with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            str_dict[row[0]] = row[1]
+
+
+fill_str()
+
+BACKGROUND = pygame.transform.rotate(pygame.image.load("Res/Assets/space.png"), 90)
+PLAYER_SHIP_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
+                                                                 (int(str_dict.get('ship_y')),
+                                                                  int(str_dict.get('ship_y')))), 180)
+ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
+                                        (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
+# BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss_ship.png"), (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
+BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bul.png"),
+                                    (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
+BASIC_FONT = pygame.font.SysFont("comicsans", 20)
+
 
 class Play_mode():
     def __init__(self):
-        self.str_dict = {}
-        self.fill_str()
-        self.field = []
-
-        self.player_x_from_list = 0
-        self.field_h = int(self.str_dict.get("field_h"))
-        self.field_w = int(self.str_dict.get("field_w"))
-        self.frame_h = int(self.str_dict.get("h"))
-        self.frame_w = int(self.str_dict.get("w"))
-
-        self.FPS = int(self.str_dict.get("FPS"))
-
+        self.frame_h = int(str_dict.get("h"))
+        self.frame_w = int(str_dict.get("w"))
+        self.FPS = int(str_dict.get("FPS"))
         self.sc = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
-
-        self.BACK = "Res/Assets/space.png"
-        self.PLAYER_SHIP_PNG = "Res/Assets/p_ship.png"
-        self.ENEMY_SHIP_PNG = "Res/Assets/boss_ship.png"
-        self.BOSS_SHIP_PNG = "Res/Assets/enemy.png"
-        self.BULL_PNG = "Res/Assets/bul.png"
-
-        self.fill_field()
-
-    def fill_field(self):
-        self.field = [[0 for j in range(self.field_w)]
-                      for i in range(self.field_h)]
-        self.field[-1][len(self.field[-1]) // 2] = "p"
-
-    def fill_str(self):
-        self.str_dict = {}
-        with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
-            reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-            for row in reader:
-                self.str_dict[row[0]] = row[1]
+        self.lvl = 1
+        self.hp = 4
+        self.player_shift = 5
+        self.player = Player_Ship(self.frame_w // 2, self.frame_h - int(str_dict.get('ship_y')))
 
     def run(self):
-        while True:  # обработка нажатий и инициализация игрового поля, спрайтов
+        while True:
             clock = pygame.time.Clock()
             clock.tick(self.FPS)
-
+            self.redraw_window()
             # цикл обработки событий
-            for i in pygame.event.get():
-                if i.type == pygame.QUIT:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     exit()
-                elif i.type == pygame.KEYDOWN and i.key == pygame.K_RIGHT:
-                    self.p_do(1)
-                elif i.type == pygame.KEYDOWN and i.key == pygame.K_LEFT:
-                    self.p_do(-1)
-                elif i.type == pygame.KEYDOWN and (i.key == pygame.K_SPACE or i.key == pygame.K_UP):  # стрельба
-                    self.p_do(0)
-            self.draw_all()
-            pygame.display.update()
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_RIGHT] and self.player.x + self.player_shift + int(str_dict.get("ship_x")) < self.frame_w:
+                self.player.x += self.player_shift
+            elif keys[pygame.K_LEFT] and self.player.x - self.player_shift > 0:
+                self.player.x -= self.player_shift
+            elif keys[pygame.K_UP] and self.player.y - self.player_shift > 0:
+                self.player.y -= self.player_shift
+            elif keys[pygame.K_DOWN] and self.player.y + self.player_shift + int(str_dict.get("ship_y")) < self.frame_h:
+                self.player.y += self.player_shift
 
-    def draw_all(self):
-        background_surf = pygame.image.load(self.BACK)
-        background_surf = pygame.transform.rotate(background_surf, 90)
-        self.sc.blit(background_surf, (0, 0))
+    def redraw_window(self):
+        pygame.display.update()
+        self.sc.blit(BACKGROUND, (0, 0))
+        # вывод текстовой информации
+        lvl_lable = BASIC_FONT.render(f"Уровень: {self.lvl}", 1, (255, 255, 255))
+        hp_lable = BASIC_FONT.render(f"Жизни: {self.hp}", 1, (255, 255, 255))
+        self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
+        self.sc.blit(hp_lable, (self.frame_w - hp_lable.get_width() - 10, 10 + lvl_lable.get_height()))
+        self.player.draw(self.sc)
 
-        self.solve_p()
-        self.solve_bul_p()
 
-    def solve_p(self):
-        ship_size_x = 30
-        ship_size_y = 30
+class Super_Ship:
+    def __init__(self, x, y, hp=100):
+        self.x = x
+        self.y = y
+        self.hp = hp
+        self.ship_asset = ENEMY_SHIP_PNG
+        self.bullets_cool_down = 0
+        self.bullets = []
 
-        player_ship = pygame.image.load(self.PLAYER_SHIP_PNG).convert()
-        player_ship = pygame.transform.rotate(player_ship, 180)
-        player_ship_tr = pygame.transform.scale(player_ship, (ship_size_x, ship_size_y))
+    def draw(self, sc):
+        sc.blit(self.ship_asset, (self.x, self.y))
 
-        self.sc.blit(player_ship_tr,
-                     (self.frame_w // 2 + self.player_x_from_list - ship_size_x // 2,
-                      self.frame_h - ship_size_y))  # сделано косячно
 
-    def solve_bul_p(self):
-        bul_size_x = 10
-        bul_size_y = 10
-        for i in range(len(self.field)):
-            for j in range(len(self.field[i])):
-                if self.field[i][j] == "bul_p":  # отрисовка пули
-                    if i != 0:  # если ещё на экране
-                        self.field[i][j], self.field[i - 1][j] = self.field[i - 1][j], 'bul_p'
-                        bull = pygame.image.load(self.BULL_PNG).convert()
-                        bull = pygame.transform.rotate(bull, 180)
-                        bull_tr = pygame.transform.scale(bull, (bul_size_x, bul_size_y))
-
-                        self.sc.blit(bull_tr,
-                                     (self.frame_w * j / len(self.field[i]) + 35,
-                                      self.frame_h * i / len(self.field)))
-                    else:
-                        self.field[i][j] = 0
-
-    def p_do(self, dir):
-        index_p = self.field[-1].index("p")
-        if dir == 1 and 0 <= self.field[-1].index("p") <= int(self.str_dict.get('field_w')) - 2:
-            self.field[-1][index_p], self.field[-1][index_p + 1] = self.field[-1][index_p + 1], self.field[-1][
-                index_p]
-            print(self.field)
-            self.player_x_from_list += 1 / self.field_w * self.frame_w
-        elif dir == -1 and 1 <= self.field[-1].index("p") <= int(self.str_dict.get('field_w')) - 1:
-            self.field[-1][index_p], self.field[-1][index_p - 1] = self.field[-1][index_p - 1], self.field[-1][
-                index_p]
-            print(self.field)
-            self.player_x_from_list -= 1 / self.field_w * self.frame_w
-        elif dir == 0:
-            self.field[-2][index_p] = 'bul_p'
-            print(self.field)
+class Player_Ship(Super_Ship):
+    def __init__(self, x, y, hp=1):
+        super().__init__(x, y, hp)
+        self.ship_asset = PLAYER_SHIP_PNG
+        self.bullet_asset = BULLET_PNG
