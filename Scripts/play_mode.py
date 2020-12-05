@@ -17,9 +17,8 @@ def fill_str():
 fill_str()
 
 BACKGROUND = pygame.transform.rotate(pygame.image.load("Res/Assets/space.png"), 90)
-PLAYER_SHIP_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
-                                                                 (int(str_dict.get('ship_y')),
-                                                                  int(str_dict.get('ship_y')))), 180)
+PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
+                                         (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 # BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss_ship.png"), (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
@@ -37,7 +36,7 @@ class Play_mode():
         self.lvl = 1
         self.hp = 4
         self.player_shift = 5
-        self.player = Player_Ship(self.frame_w // 2, self.frame_h - int(str_dict.get('ship_y')))
+        self.player = Player_Ship(self.frame_w//2, self.frame_h-int(str_dict.get('ship_y')))
 
     def run(self):
         while True:
