@@ -1,7 +1,7 @@
 import csv
+import random
 
 import pygame
-import random
 
 pygame.font.init()
 
@@ -41,8 +41,10 @@ class Play_mode():
         self.enemies = []
         self.wave_len = 3
         self.enemy_shift = 5
+
     def end_game(self):
         exit(0)
+
     def run(self):
         while True:
             clock = pygame.time.Clock()
@@ -50,7 +52,6 @@ class Play_mode():
 
             if self.hp <= 0 or self.player.hp <= 0:
                 self.end_game()
-
 
             if len(self.enemies) == 0:
                 self.lvl += 1
@@ -80,7 +81,6 @@ class Play_mode():
                     self.hp -= 1
                     self.enemies.remove(enemy)
             self.redraw_window()
-
 
     def redraw_window(self):
         pygame.display.update()
@@ -114,6 +114,7 @@ class Player_Ship(Super_Ship):
         self.bullet_asset = BULLET_PNG
         self.mask = pygame.mask.from_surface(self.ship_asset)
         self.max_hp = hp
+
 
 
 class Enemy_Ship(Super_Ship):
