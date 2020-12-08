@@ -1,5 +1,6 @@
 import csv
 import random
+from math import sqrt
 
 import pygame
 
@@ -17,7 +18,7 @@ def fill_str():
 
 fill_str()
 
-BACKGROUND = pygame.transform.rotate(pygame.image.load("Res/Assets/space.png"), 90)
+BACKGROUND = pygame.image.load("Res/Assets/space.png")
 PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
@@ -26,6 +27,7 @@ ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"
 BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bul.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
+GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
 
 class Play_mode():
@@ -41,14 +43,23 @@ class Play_mode():
         self.enemies = []
         self.wave_len = 3
         self.enemy_shift = 5
+        self.clock = pygame.time.Clock()
 
     def end_game(self):
-        exit(0)
+        while True:
+            self.sc.fill((0, 0, 0))
+            game_over_txt = GAME_OVER_FONT.render(f"GAME OVER", 1, (255, 255, 255))
+            self.sc.blit(game_over_txt, ((self.frame_w - game_over_txt.get_width()) // 2,
+                                         (self.frame_h - game_over_txt.get_height()) // 2))
+            self.clock.tick(self.FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit(0)
+            pygame.display.update()
 
     def run(self):
         while True:
-            clock = pygame.time.Clock()
-            clock.tick(self.FPS)
+            self.clock.tick(self.FPS)
 
             if self.hp <= 0 or self.player.hp <= 0:
                 self.end_game()
@@ -65,16 +76,19 @@ class Play_mode():
             # цикл обработки событий
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    exit()
+                    exit(0)
+            coef = 1
             keys = pygame.key.get_pressed()
+            if list(keys)[79: 83].count(1) == 2:  # срез включает кнопки стрелок
+                coef = sqrt(2) / 2
             if keys[pygame.K_RIGHT] and self.player.x + self.player_shift + int(str_dict.get("ship_x")) < self.frame_w:
-                self.player.x += self.player_shift
-            elif keys[pygame.K_LEFT] and self.player.x - self.player_shift > 0:
-                self.player.x -= self.player_shift
-            elif keys[pygame.K_UP] and self.player.y - self.player_shift > 0:
-                self.player.y -= self.player_shift
-            elif keys[pygame.K_DOWN] and self.player.y + self.player_shift + int(str_dict.get("ship_y")) < self.frame_h:
-                self.player.y += self.player_shift
+                self.player.x += self.player_shift * coef
+            if keys[pygame.K_LEFT] and self.player.x - self.player_shift > 0:
+                self.player.x -= self.player_shift * coef
+            if keys[pygame.K_UP] and self.player.y - self.player_shift > 0:
+                self.player.y -= self.player_shift * coef
+            if keys[pygame.K_DOWN] and self.player.y + self.player_shift + int(str_dict.get("ship_y")) < self.frame_h:
+                self.player.y += self.player_shift * coef
             for enemy in self.enemies[:]:
                 enemy.mover(self.enemy_shift)
                 if enemy.y + int(str_dict.get("ship_y")) > self.frame_h:
