@@ -10,6 +10,7 @@ import pygame
 pygame.font.init()
 
 
+
 def fill_str():
     str_dict = {}
     with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
