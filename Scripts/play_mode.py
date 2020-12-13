@@ -44,6 +44,7 @@ class Play_mode():
         self.wave_len = 3
         self.enemy_shift = 5
         self.clock = pygame.time.Clock()
+        pygame.mixer.init()
 
     def end_game(self):
         while True:
@@ -106,6 +107,12 @@ class Play_mode():
         self.sc.blit(hp_lable, (self.frame_w - hp_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.player.draw(self.sc)
 
+    # Проигрывание звуков/музыки
+    def play_sound(file):
+        if not pygame.mixer.music.get_busy():
+            pygame.mixer.music.load(file)
+            pygame.mixer.music.play()
+
 
 class Super_Ship:
     def __init__(self, x, y, hp=10):
@@ -128,7 +135,6 @@ class Player_Ship(Super_Ship):
         self.bullet_asset = BULLET_PNG
         self.mask = pygame.mask.from_surface(self.ship_asset)
         self.max_hp = hp
-
 
 
 class Enemy_Ship(Super_Ship):
