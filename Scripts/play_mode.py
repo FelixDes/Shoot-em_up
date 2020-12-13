@@ -44,7 +44,9 @@ class Play_mode():
         self.wave_len = 3
         self.enemy_shift = 5
         self.clock = pygame.time.Clock()
+        # Инициализация миксера с 50 каналами для звуков
         pygame.mixer.init()
+        pygame.mixer.set_num_channels(50)
 
     def end_game(self):
         while True:
@@ -107,12 +109,12 @@ class Play_mode():
         self.sc.blit(hp_lable, (self.frame_w - hp_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.player.draw(self.sc)
 
-    # Проигрывание звуков/музыки
-    def play_sound(file):
-        if not pygame.mixer.music.get_busy():
-            pygame.mixer.music.load(file)
-            pygame.mixer.music.play()
-
+    # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1
+    def play_sound(self, file, loops=0):
+        for i in range(pygame.mixer.get_num_channels()):
+            if not pygame.mixer.Channel(i).get_busy():
+                pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+                break
 
 class Super_Ship:
     def __init__(self, x, y, hp=10):
