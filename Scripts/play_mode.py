@@ -60,6 +60,7 @@ class Play_mode():
         self.enemy_shift = 5
         self.bull_shift = 7
         self.clock = pygame.time.Clock()
+        pygame.mixer.init()
 
     def end_game(self):
         global exit_flag
@@ -142,6 +143,12 @@ class Play_mode():
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
         self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.player.draw(self.sc)
+
+    # Проигрывание звуков/музыки
+    def play_sound(file):
+        if not pygame.mixer.music.get_busy():
+            pygame.mixer.music.load(file)
+            pygame.mixer.music.play()
 
 
 class Super_Bullet:
@@ -230,7 +237,6 @@ class Player_Ship(Super_Ship):
                         objs.remove(obj)
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
-
 
 class Enemy_Ship(Super_Ship):
     def __init__(self, x, y, hp=10):
