@@ -8,6 +8,8 @@ from Scripts.play_mode import Play_mode
 pygame.mixer.init()
 pygame.mixer.set_num_channels(50)
 
+# Словарь со звуками
+sounds = dict()
 str_dict = {}
 with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -24,12 +26,27 @@ def run_play_mode():
     m.run()
 
 
-# Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1
-def play_sound(file, loops=0):
-    for i in range(pygame.mixer.get_num_channels()):
-        if not pygame.mixer.Channel(i).get_busy():
-            pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+# Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
+# start_sound - флаг, отвечающий за действие метода (False - выключение звуков, True - включение)
+def play_sound(file, loops=0, start_sound=False):
+    if start_sound:
+        for i in range(pygame.mixer.get_num_channels()):
+            if not pygame.mixer.Channel(i).get_busy():
+                if file not in sounds.keys():
+                    sounds[file] = [i]
+                else:
+                    sounds[file].append(i)
+                pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
             break
+        return
+    for i in sounds[file]:
+        pygame.mixer.Channel(i).stop()
+
+
+# Остановка всех звуков
+def stop_all_sound():
+    for i in range(pygame.mixer.get_num_channels()):
+        pygame.mixer.Channel(i).stop()
 
 
 if __name__ == "__main__":

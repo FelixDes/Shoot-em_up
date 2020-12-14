@@ -47,6 +47,8 @@ class Play_mode():
         # Инициализация миксера с 50 каналами для звуков
         pygame.mixer.init()
         pygame.mixer.set_num_channels(50)
+        # Словарь со звуками
+        self.sounds = dict()
 
     def end_game(self):
         while True:
@@ -109,12 +111,27 @@ class Play_mode():
         self.sc.blit(hp_lable, (self.frame_w - hp_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.player.draw(self.sc)
 
-    # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1
-    def play_sound(self, file, loops=0):
-        for i in range(pygame.mixer.get_num_channels()):
-            if not pygame.mixer.Channel(i).get_busy():
-                pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+    # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
+    # start_sound - флаг, отвечающий за действие метода (False - выключение звуков, True - включение)
+    def play_sound(self, file, loops=0, start_sound=False):
+        if start_sound:
+            for i in range(pygame.mixer.get_num_channels()):
+                if not pygame.mixer.Channel(i).get_busy():
+                    if file not in self.sounds.keys():
+                        self.sounds[file] = [i]
+                    else:
+                        self.sounds[file].append(i)
+                    pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
                 break
+            return
+        for i in self.sounds[file]:
+            pygame.mixer.Channel(i).stop()
+
+    # Остановка всех звуков
+    def stop_all_sound(self):
+        for i in range(pygame.mixer.get_num_channels()):
+            pygame.mixer.Channel(i).stop()
+
 
 class Super_Ship:
     def __init__(self, x, y, hp=10):

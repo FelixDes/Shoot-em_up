@@ -46,7 +46,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="7a490ce8d5c44fa492760febc2c94b74bf67876f" />
+        <entry key="$PROJECT_DIR$" value="feature_branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -211,7 +211,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature_branch" />
+                        <option value="origin/feature_branch" />
                       </list>
                     </value>
                   </entry>
