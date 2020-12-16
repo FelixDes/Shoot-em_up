@@ -10,7 +10,6 @@ import pygame
 pygame.font.init()
 
 
-
 def fill_str():
     str_dict = {}
     with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
@@ -21,6 +20,8 @@ def fill_str():
 
 
 str_dict = fill_str()
+# Словарь со звуками
+sounds = dict()
 
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
@@ -31,11 +32,38 @@ BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss_ship.p
                                        (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bul.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
-
+BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
+DAMAGE_SOUND = "Res/Audio/damage.mp3"
+DEATH_SOUND = "Res/Audio/death_sound.mp3"
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
 exit_flag = False
+
+# Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
+# start_sound - флаг, отвечающий за действие метода (False - выключение звуков, True - включение)
+
+def play_sound(file, loops=0, start_sound=False, volume=1.0):
+    if start_sound:
+        for i in range(pygame.mixer.get_num_channels()):
+            if not pygame.mixer.Channel(i).get_busy():
+                if file not in sounds.keys():
+                    sounds[file] = [i]
+                else:
+                    sounds[file].append(i)
+                pygame.mixer.Channel(i).set_volume(volume)
+                pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+            break
+        return
+    for i in sounds[file]:
+        pygame.mixer.Channel(i).stop()
+
+    # Остановка всех звуков
+
+
+def stop_all_sound():
+    for i in range(pygame.mixer.get_num_channels()):
+        pygame.mixer.Channel(i).stop()
 
 
 def exit_for_time(t):
@@ -60,14 +88,20 @@ class Play_mode():
         self.enemy_shift = 5
         self.bull_shift = 7
         self.clock = pygame.time.Clock()
+        # Инициализация миксера с 50 каналами для звуков
         pygame.mixer.init()
+        pygame.mixer.set_num_channels(50)
+
 
     def end_game(self):
         global exit_flag
         time = 4
+
         # _thread.start_new_thread(exit_for_time, (time,))
         exit_tread = threading.Thread(target=exit_for_time, args=(time,))
         exit_tread.start()
+        stop_all_sound()
+        play_sound(DEATH_SOUND, 0, True)
         # exit_tread.join()
         while True:
             self.sc.fill((0, 0, 0))
@@ -83,6 +117,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
+        play_sound(BATTLE_MUSIC, -1, True, 0.1)
         while True:
             self.clock.tick(self.FPS)
 
@@ -106,6 +141,7 @@ class Play_mode():
             keys = pygame.key.get_pressed()
             if list(keys)[79: 83].count(1) == 2:  # срез включает кнопки стрелок
                 coef = sqrt(2) / 2
+                # pass
             if keys[pygame.K_RIGHT] and self.player.x + self.player_shift + int(str_dict.get("ship_x")) < self.frame_w:
                 self.player.x += self.player_shift * coef
             if keys[pygame.K_LEFT] and self.player.x - self.player_shift > 0:
@@ -125,6 +161,7 @@ class Play_mode():
 
                 if collide(enemy, self.player):
                     self.player.hp -= 10
+                    play_sound(DAMAGE_SOUND, 0, True)
                     self.enemies.remove(enemy)
 
                 if enemy.y + int(str_dict.get("ship_y")) > self.frame_h:
@@ -143,12 +180,6 @@ class Play_mode():
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
         self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.player.draw(self.sc)
-
-    # Проигрывание звуков/музыки
-    def play_sound(file):
-        if not pygame.mixer.music.get_busy():
-            pygame.mixer.music.load(file)
-            pygame.mixer.music.play()
 
 
 class Super_Bullet:
@@ -200,7 +231,9 @@ class Super_Ship:
             bullet.mover(shift)
             if bullet.off_screen(int(str_dict.get('h'))):
                 self.bullets.remove(bullet)
+                play_sound(DAMAGE_SOUND, 0, True)
             elif bullet.collision(obj):
+                play_sound(DAMAGE_SOUND, 0, True)
                 obj.hp -= 10
                 self.bullets.remove(bullet)
 
@@ -238,8 +271,9 @@ class Player_Ship(Super_Ship):
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
 
+
 class Enemy_Ship(Super_Ship):
-    def __init__(self, x, y, hp=10):
+    def __init__(self, x, y, hp=99999999999):
         super().__init__(x, y, hp)
         self.ship_asset = ENEMY_SHIP_PNG
         self.bullet_asset = BULLET_PNG
