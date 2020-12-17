@@ -117,7 +117,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
-        play_sound(BATTLE_MUSIC, -1, True, 0.1)
+        #play_sound(BATTLE_MUSIC, -1, True, 0.1)
         while True:
             self.clock.tick(self.FPS)
 

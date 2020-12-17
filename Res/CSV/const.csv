@@ -5,3 +5,7 @@
 "ship_y","30"
 "bullet_x","15"
 "bullet_y","15"
+"button_x","100"
+"button_y","50"
+"Play_button_x","130"
+"Play_button_y","180"
