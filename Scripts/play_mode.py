@@ -122,7 +122,7 @@ class Play_mode():
                     else:
                         self.sounds[file].append(i)
                     pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
-                break
+                    break
             return
         for i in self.sounds[file]:
             pygame.mixer.Channel(i).stop()
