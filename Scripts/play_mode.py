@@ -24,13 +24,13 @@ str_dict = fill_str()
 sounds = dict()
 
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
-PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/p_ship.png"),
+PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss_ship.png"),
                                        (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
-BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bul.png"),
+BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
@@ -105,6 +105,7 @@ class Play_mode():
         play_sound(DEATH_SOUND, 0, True)
         # exit_tread.join()
         while True:
+
             self.sc.fill((0, 0, 0))
             game_over_txt = GAME_OVER_FONT.render(f"GAME OVER", 1, (255, 255, 255))
             self.sc.blit(game_over_txt, ((self.frame_w - game_over_txt.get_width()) // 2,
@@ -118,7 +119,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
-        play_sound(BATTLE_MUSIC, -1, True, 0.1)
+        play_sound(BATTLE_MUSIC, -1, True, 0.7)
         while True:
             self.clock.tick(self.FPS)
 
@@ -185,7 +186,7 @@ class Play_mode():
 
 class Super_Bullet:
     def __init__(self, x, y):
-        self.x = x
+        self.x = x + 17
         self.y = y
         self.img = BULLET_PNG
         self.mask = pygame.mask.from_surface(self.img)
@@ -210,7 +211,7 @@ def collide(obj1, obj2):
 
 
 class Super_Ship:
-    COOLDOWN = 30
+    COOLDOWN = 15
 
     def __init__(self, x, y, hp=10):
         self.x = x
@@ -272,6 +273,16 @@ class Player_Ship(Super_Ship):
                         objs.remove(obj)
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
+
+    def healthbar(self, window):
+        pygame.draw.rect(window, (255, 0, 0),
+                         (self.x, self.y + self.ship_asset.get_height() + 10, self.ship_asset.get_width(), 10))
+        pygame.draw.rect(window, (0, 255, 0), (self.x, self.y + self.ship_asset.get_height() + 10,
+                                               self.ship_asset.get_width() * (self.hp / self.max_hp), 10))
+
+    def draw(self, sc):
+        super().draw(sc)
+        self.healthbar(sc)
 
 
 class Enemy_Ship(Super_Ship):
