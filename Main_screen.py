@@ -34,7 +34,7 @@ def play_sound(file, loops=0, start_sound=False):
                 else:
                     sounds[file].append(i)
                 pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
-            break
+                break
         return
     for i in sounds[file]:
         pygame.mixer.Channel(i).stop()

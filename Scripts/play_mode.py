@@ -35,6 +35,7 @@ BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bul.png"),
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
+SHOOT_SOUND = "Res/Audio/shoot.mp3"
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
@@ -53,7 +54,7 @@ def play_sound(file, loops=0, start_sound=False, volume=1.0):
                     sounds[file].append(i)
                 pygame.mixer.Channel(i).set_volume(volume)
                 pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
-            break
+                break
         return
     for i in sounds[file]:
         pygame.mixer.Channel(i).stop()
@@ -117,7 +118,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
-        #play_sound(BATTLE_MUSIC, -1, True, 0.1)
+        play_sound(BATTLE_MUSIC, -1, True, 0.1)
         while True:
             self.clock.tick(self.FPS)
 
@@ -156,7 +157,7 @@ class Play_mode():
                 enemy.mover(self.enemy_shift)
                 enemy.move_bullets(self.bull_shift, self.player)
 
-                if random.randrange(0, 120) == 1:
+                if random.randrange(0, 120) == 1 and enemy.y > 0:
                     enemy.shoot()
 
                 if collide(enemy, self.player):
@@ -245,6 +246,7 @@ class Super_Ship:
 
     def shoot(self):
         if self.bullets_cool_down == 0:
+            play_sound(SHOOT_SOUND, 0, True)
             bullet = Super_Bullet(self.x, self.y)
             self.bullets.append(bullet)
             self.bullets_cool_down = 1
