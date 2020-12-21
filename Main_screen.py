@@ -3,15 +3,26 @@ import csv
 import pygame
 
 from Scripts.play_mode import Play_mode
+from Scripts.settings_class import Settings
 
-str_dict = {}
+def fill_str(name):
+    str_dict = {}
+    with open(name, encoding="utf8") as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            str_dict[row[0]] = row[1]
+        return str_dict
+
+
+str_dict = fill_str('Res/CSV/const.csv')
+settings_dict = dict()
+def update_settings():
+    global settings_dict
+    settings_dict = fill_str('Res/CSV/settings.csv')
+update_settings()
 sounds = {}
-with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    for row in reader:
-        str_dict[row[0]] = row[1]
 
-FIRST_SCREEN = "Res/Audio/first_screen.mp3"
+FIRST_SCREEN = "Res/Audio/first_screen_music.mp3"
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 MAIN_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/main_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
@@ -19,8 +30,7 @@ PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
 
 
-def run_settings():
-    pass
+
 
 
 # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
@@ -34,39 +44,54 @@ def play_sound(file, loops=0, start_sound=False):
                 else:
                     sounds[file].append(i)
                 pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+                pygame.mixer.Channel(i).set_volume(
+                    float(settings_dict.get('music_volume') if 'music' in file else settings_dict.get('sound_volume')))
                 break
         return
     for i in sounds[file]:
         pygame.mixer.Channel(i).stop()
 
-    # Остановка всех звуков
+# Остановка всех звуков
+def stop_all_sound():
+    for i in range(pygame.mixer.get_num_channels()):
+        pygame.mixer.Channel(i).stop()
 
 
 def main_window():
-    global event
+    global event, settings_dict
+    update_settings()
     play_sound(FIRST_SCREEN, -1, True)
     while True:
         redraw_window()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit(0)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            # rect = pygame.Rect(0, sc.get_height() - int(str_dict.get('button_y')), int(str_dict.get('button_x')),
-            #                    int(str_dict.get('button_y')))
-            rect = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                               sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50,
-                               int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
-            if rect.collidepoint(pos):
-                stop_all_sound()
-                run_play_mode()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = pygame.mouse.get_pos()
+                # Кнопка настроек
+                rect_1 = pygame.Rect(0, sc.get_height() - int(str_dict.get('button_y')), int(str_dict.get('button_x')),
+                                     int(str_dict.get('button_y')))
+                # Кнопка начала
+                rect_2 = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
+                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50,
+                                     int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
+                if rect_1.collidepoint(pos):
+                    run_settings()
+                    settings_dict = fill_str('Res/CSV/settings.csv')
+                elif rect_2.collidepoint(pos):
+                    stop_all_sound()
+                    run_play_mode()
+                    update_settings()
+                    play_sound(FIRST_SCREEN, -1, True)
+
 
 
 def redraw_window():
     pygame.display.update()
     sc.blit(BACKGROUND, (0, 0))
     sc.blit(MAIN_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
-    sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x'))//2, sc.get_height() // 2 - int(str_dict.get('Play_button_y'))//2 - 50))
+    sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
+                          sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50))
     # вывод текстовой информации
     # lvl_lable = BASIC_FONT.render(f"Уровень: {self.lvl}", 1, (255, 255, 255))
     # lives_lable = BASIC_FONT.render(f"Жизни: {self.lives}", 1, (255, 255, 255))
@@ -75,9 +100,15 @@ def redraw_window():
     # self.player.draw(self.sc)
 
 
-def stop_all_sound():
-    for i in range(pygame.mixer.get_num_channels()):
-        pygame.mixer.Channel(i).stop()
+
+
+
+# Вызов настроек
+def run_settings():
+    s = Settings(sounds)
+    s.run()
+    stop_all_sound()
+    main_window()
 
 
 def run_play_mode():

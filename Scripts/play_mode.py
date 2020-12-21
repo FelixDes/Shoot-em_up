@@ -10,19 +10,23 @@ import pygame
 pygame.font.init()
 
 
-def fill_str():
+def fill_str(name):
     str_dict = {}
-    with open('Res/CSV/const.csv', encoding="utf8") as csvfile:
+    with open(name, encoding="utf8") as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             str_dict[row[0]] = row[1]
         return str_dict
 
 
-str_dict = fill_str()
+str_dict = fill_str('Res/CSV/const.csv')
+settings_dict = dict()
+def update_settings():
+    global settings_dict
+    settings_dict = fill_str('Res/CSV/settings.csv')
+update_settings()
 # Словарь со звуками
 sounds = dict()
-
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
@@ -41,10 +45,10 @@ GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
 exit_flag = False
 
+
 # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
 # start_sound - флаг, отвечающий за действие метода (False - выключение звуков, True - включение)
-
-def play_sound(file, loops=0, start_sound=False, volume=1.0):
+def play_sound(file, loops=0, start_sound=False):
     if start_sound:
         for i in range(pygame.mixer.get_num_channels()):
             if not pygame.mixer.Channel(i).get_busy():
@@ -52,8 +56,9 @@ def play_sound(file, loops=0, start_sound=False, volume=1.0):
                     sounds[file] = [i]
                 else:
                     sounds[file].append(i)
-                pygame.mixer.Channel(i).set_volume(volume)
                 pygame.mixer.Channel(i).play(pygame.mixer.Sound(file), loops=loops)
+                pygame.mixer.Channel(i).set_volume(
+                    float(settings_dict.get('music_volume') if 'music' in file else settings_dict.get('sound_volume')))
                 break
         return
     for i in sounds[file]:
@@ -89,10 +94,10 @@ class Play_mode():
         self.enemy_shift = 5
         self.bull_shift = 7
         self.clock = pygame.time.Clock()
+        update_settings()
         # Инициализация миксера с 50 каналами для звуков
         pygame.mixer.init()
         pygame.mixer.set_num_channels(50)
-
 
     def end_game(self):
         global exit_flag
@@ -119,7 +124,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
-        play_sound(BATTLE_MUSIC, -1, True, 0.7)
+        play_sound(BATTLE_MUSIC, -1, True)
         while True:
             self.clock.tick(self.FPS)
 
@@ -144,6 +149,11 @@ class Play_mode():
             if list(keys)[79: 83].count(1) == 2:  # срез включает кнопки стрелок
                 coef = sqrt(2) / 2
                 # pass
+            # Выход
+            if keys[pygame.K_ESCAPE]:
+                stop_all_sound()
+                break
+
             if keys[pygame.K_RIGHT] and self.player.x + self.player_shift + int(str_dict.get("ship_x")) < self.frame_w:
                 self.player.x += self.player_shift * coef
             if keys[pygame.K_LEFT] and self.player.x - self.player_shift > 0:
