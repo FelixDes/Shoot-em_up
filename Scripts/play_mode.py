@@ -32,7 +32,7 @@ PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.pn
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
-BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss_ship.png"),
+BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
                                        (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))

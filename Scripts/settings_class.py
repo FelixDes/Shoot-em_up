@@ -21,7 +21,7 @@ def update_settings():
     settings_dict = fill_str('Res/CSV/settings.csv')
 update_settings()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
-MAIN_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/main_button.png"),
+SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 
 
@@ -81,7 +81,7 @@ class Settings():
         music_text = font.render("Music:", True, (100, 255, 100))
 
         self.sc.blit(BACKGROUND, (0, 0))
-        self.sc.blit(MAIN_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
+        self.sc.blit(SETTINGS_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
         # Текст около слайдеров
         self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10 - 10))
         self.sc.blit(music_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 2 // 10 - 10))
