@@ -24,7 +24,7 @@ sounds = {}
 
 FIRST_SCREEN = "Res/Audio/first_screen_music.mp3"
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
-MAIN_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/main_button.png"),
+SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
@@ -89,7 +89,7 @@ def main_window():
 def redraw_window():
     pygame.display.update()
     sc.blit(BACKGROUND, (0, 0))
-    sc.blit(MAIN_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
+    sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
                           sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50))
     # вывод текстовой информации
