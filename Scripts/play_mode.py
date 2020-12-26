@@ -1,8 +1,6 @@
 import csv
 import random
-import sys
 import threading
-import time
 from math import sqrt
 
 import pygame
@@ -82,13 +80,6 @@ def stop_all_sound():
         pygame.mixer.Channel(i).stop()
 
 
-def exit_for_time(t):
-    global exit_flag
-    time.sleep(t)
-    exit_flag = True
-    sys.exit()
-
-
 class Play_mode():
     def __init__(self):
         self.frame_h = int(str_dict.get("h"))
@@ -114,13 +105,16 @@ class Play_mode():
     def end_game(self):
         global exit_flag
         time = 4
-        # _thread.start_new_thread(exit_for_time, (time,))
-        exit_tread = threading.Thread(target=exit_for_time, args=(time,))
-        exit_tread.start()
         stop_all_sound()
         play_sound(DEATH_SOUND, 0, True)
+        lost_count = 0
         # exit_tread.join()
         while True:
+            lost_count += 1
+            if lost_count > int(str_dict.get("FPS")) * 3:
+                with open('Main_screen.py', "r") as file:
+                    exec(file.read())
+                    exit()
 
             self.sc.fill((0, 0, 0))
             game_over_txt = GAME_OVER_FONT.render(f"GAME OVER", 1, (255, 255, 255))
@@ -158,16 +152,15 @@ class Play_mode():
                     self.enemies.add(enemy)
             # Создвние бустеров
             rand = random.randint(0, 2500)
-            # rand = 5
             if rand == 1:
                 self.boosters.add(Live_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 2:
                 self.boosters.add(Health_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 3:
                 self.boosters.add(Speed_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
-            elif rand == 4:
+            elif rand == 4 and self.player.COOLDOWN > 7:
                 self.boosters.add(Damage_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
-            elif rand == 5:
+            elif rand == 5 and self.player.bullet_amount < 5:
                 self.boosters.add(Gun_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             self.enemies.draw(self.sc)
             self.boosters.draw(self.sc)
@@ -264,11 +257,12 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
-    COOLDOWN = 13
+
 
     def __init__(self, x, y, hp=10):
         super().__init__()
         self.hp = hp
+        self.COOLDOWN = 13
         self.damage = 10
         self.image = ENEMY_SHIP_PNG
         self.mask = pygame.mask.from_surface(self.image)
@@ -374,12 +368,14 @@ class Damage_Booster(Super_Booster):
         super().__init__(BOOSTER_PNG, x, speed)
 
     def player_collision(self, player):
-        player.damage = 20
-        t = threading.Timer(5.0, self.normalize, args=(player,))
-        t.start()
-
-    def normalize(self, player):
-        player.damage = 10
+        if player.COOLDOWN >= 7:
+            player.COOLDOWN -= 1
+    #     player.damage = 20
+    #     t = threading.Timer(5.0, self.normalize, args=(player,))
+    #     t.start()
+    #
+    # def normalize(self, player):
+    #     player.damage = 10
 
 
 class Player_Ship(Super_Ship):
@@ -391,7 +387,7 @@ class Player_Ship(Super_Ship):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
         self.max_hp = hp
-        self.lives = 4
+        self.lives = 1
         self.speed = 7
         self.bullet_amount = 1
 
@@ -416,7 +412,7 @@ class Player_Ship(Super_Ship):
 
 
 class Enemy_Ship(Super_Ship):
-    def __init__(self, x, y, hp=10):
+    def __init__(self, x, y, hp=15):
         super().__init__(x, y, hp)
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG

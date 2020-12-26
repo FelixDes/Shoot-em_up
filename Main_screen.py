@@ -34,7 +34,7 @@ SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_
 PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
-                                        (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
+                              (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
@@ -90,7 +90,6 @@ def main_window():
                     stop_all_sound()
                     run_play_mode()
                     update_settings()
-                    play_sound(FIRST_SCREEN, -1, True)
 
 
 def redraw_window():
@@ -101,16 +100,6 @@ def redraw_window():
                           sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50))
     sc.blit(version_txt,
             (((sc.get_width() - version_txt.get_width()) // 2, (sc.get_height() - version_txt.get_height()))))
-    # вывод текстовой информации
-    # lvl_lable = BASIC_FONT.render(f"Уровень: {self.lvl}", 1, (255, 255, 255))
-    # lives_lable = BASIC_FONT.render(f"Жизни: {self.lives}", 1, (255, 255, 255))
-    # self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
-    # self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
-    # self.player.draw(self.sc)
-
-
-# Fixed_all_speeds_and_spawn_chances
-# Stable_beta
 
 
 # Вызов настроек
