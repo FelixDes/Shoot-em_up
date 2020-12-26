@@ -33,6 +33,9 @@ SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_
                                          (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
+ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
+                                        (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
+
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
 
@@ -126,5 +129,7 @@ def run_play_mode():
 if __name__ == "__main__":
     pygame.init()
     sc = pygame.display.set_mode((int(str_dict.get("w")), int(str_dict.get("h"))))
+    pygame.display.set_caption(str_dict.get("Name"))
+    pygame.display.set_icon(ICON)
     main_window()
     # run_play_mode()

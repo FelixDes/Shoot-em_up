@@ -45,6 +45,7 @@ ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.l
                                                                    int(str_dict.get('bullet_y')))), 180)
 BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/power_up.png"),
                                      (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
+ICON = ENEMY_SHIP_PNG
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
@@ -94,6 +95,8 @@ class Play_mode():
         self.frame_w = int(str_dict.get("w"))
         self.FPS = int(str_dict.get("FPS"))
         self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
+        pygame.display.set_caption(str_dict.get("Name"))
+        pygame.display.set_icon(ICON)
         self.lvl = 0
         self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
                                   self.frame_h - int(str_dict.get('ship_y')) - 30)
@@ -155,7 +158,7 @@ class Play_mode():
                     self.enemies.add(enemy)
             # Создвние бустеров
             rand = random.randint(0, 2500)
-            #rand = 5
+            # rand = 5
             if rand == 1:
                 self.boosters.add(Live_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 2:
@@ -224,14 +227,14 @@ class Play_mode():
         # вывод текстовой информации
         lvl_lable = BASIC_FONT.render(f"Уровень: {self.lvl}", 1, (255, 255, 255))
         lives_lable = BASIC_FONT.render(f"Жизни: {self.player.lives}", 1, (255, 255, 255))
-        self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
-        self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
         self.sc.blit(self.player.image, self.player.rect)
         self.player.healthbar(self.sc)
         self.player.bullets.draw(self.sc)
         self.enemies.draw(self.sc)
         for enemy in self.enemies:
             enemy.bullets.draw(self.sc)
+        self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
+        self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
 
 
 class Super_Bullet(pygame.sprite.Sprite):
@@ -410,6 +413,7 @@ class Player_Ship(Super_Ship):
                          (self.rect.x, self.rect.y + self.image.get_height() + 10, self.image.get_width(), 10))
         pygame.draw.rect(window, (0, 255, 0), (self.rect.x, self.rect.y + self.image.get_height() + 10,
                                                self.image.get_width() * (self.hp / self.max_hp), 10))
+
 
 class Enemy_Ship(Super_Ship):
     def __init__(self, x, y, hp=10):
