@@ -39,8 +39,10 @@ class Settings():
         self.snd_curr_vol = 0
         self.sounds = sounds
         # Инициализация слайдеров, координаты наверное можно лучше сделать
-        self.sound_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 1 // 10, 100, 20)
-        self.music_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 2 // 10, 100, 20)
+        self.sound_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 1 // 10, 100, 20,
+                                       colour=(100, 100, 100), handleColour=(40, 40, 40))
+        self.music_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 2 // 10, 100, 20,
+                                       colour=(100, 100, 100), handleColour=(40, 40, 40))
         update_settings()
         print(settings_dict)
         print(int(float(settings_dict.get('music_volume')) * 100), int(float(settings_dict.get('sound_volume')) * 100))
@@ -82,14 +84,14 @@ class Settings():
     def redraw_window(self):
         # Текст около слайдеров
         font = pygame.font.Font(None, 50)
-        sound_text = font.render("Sound:", True, (100, 255, 100))
-        music_text = font.render("Music:", True, (100, 255, 100))
+        sound_text = font.render("Sound:", True, (170, 170, 170))
+        music_text = font.render("Music:", True, (170, 170, 170))
 
         self.sc.blit(BACKGROUND, (0, 0))
         self.sc.blit(SETTINGS_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
         # Текст около слайдеров
         self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10 - 10))
-        self.sc.blit(music_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 2 // 10 - 10))
+        self.sc.blit(music_text, (self.frame_w * 1 // 10 - 1, self.frame_h * 2 // 10 - 10))
 
         self.music_vol_slider.draw()
         self.sound_vol_slider.draw()

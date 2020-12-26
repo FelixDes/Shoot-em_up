@@ -5,8 +5,6 @@ from math import sqrt
 
 import pygame
 
-pygame.font.init()
-
 
 def fill_str(name):
     str_dict = {}
@@ -48,6 +46,7 @@ BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
+pygame.font.init()
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
@@ -257,7 +256,6 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
-
 
     def __init__(self, x, y, hp=10):
         super().__init__()
