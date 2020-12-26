@@ -1,8 +1,8 @@
+import csv
+
 import pygame
 # Класс для слайдера. В будущем возможно прийдётся самим сделать.
 from pygame_widgets import Slider
-import csv
-
 
 
 def fill_str(name):
@@ -16,13 +16,17 @@ def fill_str(name):
 
 str_dict = fill_str('Res/CSV/const.csv')
 settings_dict = dict()
+
+
 def update_settings():
     global settings_dict
     settings_dict = fill_str('Res/CSV/settings.csv')
+
+
 update_settings()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_button.png"),
-                                     (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
+                                         (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 
 
 class Settings():
@@ -70,7 +74,8 @@ class Settings():
                             change['music_volume'] = self.music_vol_slider.getValue() / 100
                             change['sound_volume'] = self.sound_vol_slider.getValue() / 100
                             write = list(map(lambda x: [x, change[x]], change.keys()))
-                            writer = csv.writer(open('Res/CSV/settings.csv', 'w', encoding="utf8", newline=''), delimiter=',', quoting=csv.QUOTE_ALL)
+                            writer = csv.writer(open('Res/CSV/settings.csv', 'w', encoding="utf8", newline=''),
+                                                delimiter=',', quoting=csv.QUOTE_ALL)
                             writer.writerows(write)
                         return
 

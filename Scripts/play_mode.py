@@ -111,7 +111,6 @@ class Play_mode():
     def end_game(self):
         global exit_flag
         time = 4
-
         # _thread.start_new_thread(exit_for_time, (time,))
         exit_tread = threading.Thread(target=exit_for_time, args=(time,))
         exit_tread.start()
@@ -135,6 +134,7 @@ class Play_mode():
     def run(self):
         play_sound(BATTLE_MUSIC, -1, True)
         while True:
+            self.player.shoot()
             self.clock.tick(self.FPS)
 
             if self.player.lives <= 0 or self.player.hp <= 0:
@@ -146,21 +146,26 @@ class Play_mode():
                 self.bull_shift += 1
                 if self.wave_len == 6:
                     self.player.lives += 1
-                if self.enemy_shift != 6:
+                if self.wave_len > 5 and self.wave_len % 2 != 0:
+                    self.player.speed += 1
+                if self.enemy_shift != 7:
                     self.enemy_shift += 1
                 for i in range(self.wave_len):
                     enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50), random.randrange(-1500, -100))
                     self.enemies.add(enemy)
             # Создвние бустеров
             rand = random.randint(0, 2500)
+            #rand = 5
             if rand == 1:
-                self.boosters.add(Live_Booster(random.randint(50, 300), self.enemy_shift))
+                self.boosters.add(Live_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 2:
-                self.boosters.add(Health_Booster(random.randint(50, 300), self.enemy_shift))
+                self.boosters.add(Health_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 3:
-                self.boosters.add(Speed_Booster(random.randint(50, 300), self.enemy_shift))
+                self.boosters.add(Speed_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 4:
-                self.boosters.add(Damage_Booster(random.randint(50, 300), self.enemy_shift))
+                self.boosters.add(Damage_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
+            elif rand == 5:
+                self.boosters.add(Gun_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             self.enemies.draw(self.sc)
             self.boosters.draw(self.sc)
             for booster in self.boosters:
@@ -192,8 +197,8 @@ class Play_mode():
             if keys[pygame.K_DOWN] and self.player.rect.y + self.player.speed + int(
                     str_dict.get("ship_y")) < self.frame_h:
                 self.player.rect.y += self.player.speed * coef
-            if keys[pygame.K_SPACE]:
-                self.player.shoot()
+            # if keys[pygame.K_SPACE]:
+            #     self.player.shoot()
             for enemy in self.enemies:
                 enemy.mover(self.enemy_shift)
                 enemy.move_bullets(self.bull_shift, self.player)
@@ -269,6 +274,7 @@ class Super_Ship(pygame.sprite.Sprite):
         self.bullet_asset = BULLET_PNG
         self.bullets_cool_down = 0
         self.bullets = pygame.sprite.Group()
+        self.bullet_amount = 1
 
     def move_bullets(self, shift, obj):
         self.cool_down()
@@ -291,6 +297,15 @@ class Super_Ship(pygame.sprite.Sprite):
     def shoot(self):
         if self.bullets_cool_down == 0:
             play_sound(SHOOT_SOUND, 0, True)
+            if self.bullet_amount != 1:
+                for i in range(1, self.bullet_amount):
+                    if i % 2 != 0:
+                        bullet = Super_Bullet(self.rect.x + 25 + i * 10, self.rect.y + 20, self.bullet_image)
+                        self.bullets.add(bullet)
+                for i in range(1, self.bullet_amount):
+                    if i % 2 != 0:
+                        bullet = Super_Bullet(self.rect.x + 25 - i * 10, self.rect.y + 20, self.bullet_image)
+                        self.bullets.add(bullet)
             bullet = Super_Bullet(self.rect.x + 25, self.rect.y + 20, self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
@@ -327,6 +342,15 @@ class Live_Booster(Super_Booster):
 
     def player_collision(self, player):
         player.lives += 1
+
+
+class Gun_Booster(Super_Booster):
+    def __init__(self, x, speed):
+        super().__init__(BOOSTER_PNG, x, speed)
+
+    def player_collision(self, player):
+        if player.bullet_amount <= 5:
+            player.bullet_amount += 2
 
 
 class Speed_Booster(Super_Booster):
@@ -366,6 +390,7 @@ class Player_Ship(Super_Ship):
         self.max_hp = hp
         self.lives = 4
         self.speed = 7
+        self.bullet_amount = 1
 
     def move_bullets(self, shift, objs):
         self.cool_down()
@@ -386,9 +411,8 @@ class Player_Ship(Super_Ship):
         pygame.draw.rect(window, (0, 255, 0), (self.rect.x, self.rect.y + self.image.get_height() + 10,
                                                self.image.get_width() * (self.hp / self.max_hp), 10))
 
-
 class Enemy_Ship(Super_Ship):
-    def __init__(self, x, y, hp=99999999999):
+    def __init__(self, x, y, hp=10):
         super().__init__(x, y, hp)
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
