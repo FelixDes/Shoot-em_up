@@ -26,11 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Boosters_added">
-      <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/settings_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/settings_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Space-Shooter-Tutorial" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="ics" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -72,10 +71,11 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main_screen">
+  <component name="RunManager">
     <configuration name="Main_screen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Shoot-em_up-group" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,35 +97,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="play_mode" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Shoot-em_up-group" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Scripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Scripts/play_mode.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Main_screen" />
-        <item itemvalue="Python.play_mode" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -228,25 +205,50 @@
       <option name="project" value="LOCAL" />
       <updated>1607244007313</updated>
     </task>
-    <task id="LOCAL-00014" summary="Boosters_added">
-      <created>1608981055096</created>
+    <task id="LOCAL-00014" summary="Sound_test">
+      <created>1608139220159</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1608981055096</updated>
+      <updated>1608139220159</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Assets_replaced">
+      <created>1608583212997</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1608583212997</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed_all_speeds_and_spawn_rates&#10;Stable_beta">
+      <created>1608989860864</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1608989860864</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Multishot_added">
+      <created>1608996002352</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1608996002352</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Naming_and_icon_added">
+      <created>1608996809714</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1608996809714</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Minor_bug_fix">
+      <created>1609002402323</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1609002402323</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -287,62 +289,59 @@
     <MESSAGE value="Bullet_p_added_added" />
     <MESSAGE value="Reborn_of_the_project" />
     <MESSAGE value="test" />
-    <MESSAGE value="Boosters_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boosters_added" />
+    <MESSAGE value="Sound_test" />
+    <MESSAGE value="Assets_replaced" />
+    <MESSAGE value="Fixed_all_speeds_and_spawn_rates&#10;Stable_beta" />
+    <MESSAGE value="Multishot_added" />
+    <MESSAGE value="Naming_and_icon_added" />
+    <MESSAGE value="Minor_bug_fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor_bug_fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="586" y="198" key="#Inspections" timestamp="1607625209302">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607625209302" />
-    <state x="508" y="236" key="#Notifications" timestamp="1608912807747">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="508" y="236" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1608912807747" />
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605183677739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605183677739" />
-    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607193155424">
+    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608138254424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607193155424" />
-    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1607244006048">
+    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608138254424" />
+    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1609002401144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607244006048" />
-    <state width="217" height="442" key="Diff.GoToChangePopup" timestamp="1608912869427">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="217" height="442" key="Diff.GoToChangePopup/0.0.1536.824@0.0.1536.824" timestamp="1608912869427" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1608912884632">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1608912884632" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1607626532803">
+    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609002401144" />
+    <state x="167" y="158" width="1736" height="849" key="DiffContextDialog" timestamp="1608985776576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607626532803" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1609005168472">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="167" y="158" width="1736" height="849" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608985776576" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1608997327658">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609005168472" />
-    <state width="1877" height="340" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607628837155" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1609005168472">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608997327658" />
+    <state width="1877" height="311" key="GridCell.Tab.0.bottom" timestamp="1609004123225">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609005168472" />
-    <state width="1877" height="340" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607628837155" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1609005168472">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605292656855" />
+    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
+    <state width="1877" height="311" key="GridCell.Tab.0.center" timestamp="1609004123225">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609005168472" />
-    <state width="1877" height="340" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607628837154" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1609005168472">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605292656855" />
+    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
+    <state width="1877" height="311" key="GridCell.Tab.0.left" timestamp="1609004123224">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609005168472" />
-    <state width="1877" height="340" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607628837155" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605292656855" />
+    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123224" />
+    <state width="1877" height="311" key="GridCell.Tab.0.right" timestamp="1609004123225">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605292656855" />
+    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
     <state width="1877" height="349" key="GridCell.Tab.1.bottom" timestamp="1607627366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -363,32 +362,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="595" y="279" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607193396530" />
-    <state x="614" y="115" key="RollbackChangesDialog" timestamp="1608981142013">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1606837877765">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="614" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608981142013" />
-    <state x="369" y="115" key="SettingsEditor" timestamp="1609004005692">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="369" y="115" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609004005692" />
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606837877765" />
     <state x="-139" y="794" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1607244313292">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-139" y="794" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607244313292" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1607244152841">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1609002404607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607244152841" />
-    <state x="602" y="341" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608913067778">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609002404607" />
+    <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608314701466">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="602" y="341" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1608913067778" />
-    <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605293113660" />
-    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup" timestamp="1608920511800">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608314701466" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607625835555">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="498" y="178" width="672" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1608920511800" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607625835555" />
     <state x="790" y="310" key="svn.repositoryBrowser" timestamp="1605108836264">
       <screen x="0" y="0" width="1920" height="1040" />
