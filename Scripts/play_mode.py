@@ -21,9 +21,13 @@ def fill_str(name):
 
 str_dict = fill_str('Res/CSV/const.csv')
 settings_dict = dict()
+
+
 def update_settings():
     global settings_dict
     settings_dict = fill_str('Res/CSV/settings.csv')
+
+
 update_settings()
 # Словарь со звуками
 sounds = dict()
@@ -34,12 +38,13 @@ ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
                                        (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
-BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player_bullet.png"),
+BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
-ENEMY_BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy_bullet.png"),
-                                    (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
+ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
+                                                                  (int(str_dict.get('bullet_x')),
+                                                                   int(str_dict.get('bullet_y')))), 180)
 BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/power_up.png"),
-                                    (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
+                                     (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
@@ -88,13 +93,14 @@ class Play_mode():
         self.frame_h = int(str_dict.get("h"))
         self.frame_w = int(str_dict.get("w"))
         self.FPS = int(str_dict.get("FPS"))
-        self.sc = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
+        self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
         self.lvl = 0
-        self.player = Player_Ship(self.frame_w // 2, self.frame_h - int(str_dict.get('ship_y')))
+        self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
+                                  self.frame_h - int(str_dict.get('ship_y')) - 30)
         self.enemies = pygame.sprite.Group()
         self.boosters = pygame.sprite.Group()
         self.wave_len = 0
-        self.enemy_shift = 5
+        self.enemy_shift = 2
         self.bull_shift = 7
         self.clock = pygame.time.Clock()
         update_settings()
@@ -136,14 +142,17 @@ class Play_mode():
 
             if len(self.enemies) == 0:
                 self.lvl += 1
-                self.wave_len += 4
-                self.enemy_shift += 1
+                self.wave_len += 1
                 self.bull_shift += 1
+                if self.wave_len == 6:
+                    self.player.lives += 1
+                if self.enemy_shift != 6:
+                    self.enemy_shift += 1
                 for i in range(self.wave_len):
-                    enemy = Enemy_Ship(random.randrange(50, self.frame_w - 150), random.randrange(-1500, -100))
+                    enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50), random.randrange(-1500, -100))
                     self.enemies.add(enemy)
             # Создвние бустеров
-            rand = random.randint(0, 200)
+            rand = random.randint(0, 2500)
             if rand == 1:
                 self.boosters.add(Live_Booster(random.randint(50, 300), self.enemy_shift))
             elif rand == 2:
@@ -173,13 +182,15 @@ class Play_mode():
                 stop_all_sound()
                 break
 
-            if keys[pygame.K_RIGHT] and self.player.rect.x + self.player.speed + int(str_dict.get("ship_x")) < self.frame_w:
+            if keys[pygame.K_RIGHT] and self.player.rect.x + self.player.speed + int(
+                    str_dict.get("ship_x")) < self.frame_w:
                 self.player.rect.x += self.player.speed * coef
             if keys[pygame.K_LEFT] and self.player.rect.x - self.player.speed > 0:
                 self.player.rect.x -= self.player.speed * coef
             if keys[pygame.K_UP] and self.player.rect.y - self.player.speed > 0:
                 self.player.rect.y -= self.player.speed * coef
-            if keys[pygame.K_DOWN] and self.player.rect.y + self.player.speed + int(str_dict.get("ship_y")) < self.frame_h:
+            if keys[pygame.K_DOWN] and self.player.rect.y + self.player.speed + int(
+                    str_dict.get("ship_y")) < self.frame_h:
                 self.player.rect.y += self.player.speed * coef
             if keys[pygame.K_SPACE]:
                 self.player.shoot()
@@ -198,7 +209,6 @@ class Play_mode():
                 if enemy.rect.y + int(str_dict.get("ship_y")) > self.frame_h:
                     self.player.lives -= 1
                     self.enemies.remove(enemy)
-
 
             self.player.move_bullets(-self.bull_shift, self.enemies)
             self.redraw_window()
@@ -246,7 +256,7 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
-    COOLDOWN = 15
+    COOLDOWN = 13
 
     def __init__(self, x, y, hp=10):
         super().__init__()
@@ -281,7 +291,7 @@ class Super_Ship(pygame.sprite.Sprite):
     def shoot(self):
         if self.bullets_cool_down == 0:
             play_sound(SHOOT_SOUND, 0, True)
-            bullet = Super_Bullet(self.rect.x + 25, self.rect.y, self.bullet_image)
+            bullet = Super_Bullet(self.rect.x + 25, self.rect.y + 20, self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
 
