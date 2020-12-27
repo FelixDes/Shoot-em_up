@@ -385,7 +385,7 @@ class Player_Ship(Super_Ship):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
         self.max_hp = hp
-        self.lives = 1
+        self.lives = 5
         self.speed = 7
         self.bullet_amount = 1
 

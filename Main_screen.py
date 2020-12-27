@@ -37,7 +37,12 @@ ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                               (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
+LOGO_FONT = pygame.font.SysFont("segoe-ui-symbol", 80)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
+logo_txt = LOGO_FONT.render("❮ASTERO❯", 1, (200, 255, 255))
+
+shift = 1
+time = 0
 
 
 # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
@@ -70,6 +75,7 @@ def main_window():
     update_settings()
     play_sound(FIRST_SCREEN, -1, True)
     while True:
+
         redraw_window()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -81,7 +87,7 @@ def main_window():
                                      int(str_dict.get('button_y')))
                 # Кнопка начала
                 rect_2 = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50,
+                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40,
                                      int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
                 if rect_1.collidepoint(pos):
                     run_settings()
@@ -93,13 +99,22 @@ def main_window():
 
 
 def redraw_window():
+    global shift, time
+    if time == 2000:
+        time = 0
+        shift *= -1
+    else:
+        time += 1
+    print(shift)
     pygame.display.update()
     sc.blit(BACKGROUND, (0, 0))
     sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                          sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 - 50))
+                          sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40))
     sc.blit(version_txt,
-            (((sc.get_width() - version_txt.get_width()) // 2, (sc.get_height() - version_txt.get_height()))))
+            ((sc.get_width() - version_txt.get_width()) // 2, (sc.get_height() - version_txt.get_height())))
+    sc.blit(logo_txt,
+            ((sc.get_width() - logo_txt.get_width()) // 2, (sc.get_height() - version_txt.get_height()) // 9 - shift))
 
 
 # Вызов настроек
