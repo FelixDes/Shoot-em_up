@@ -114,7 +114,7 @@ class Play_mode():
             if lost_count > int(str_dict.get("FPS")) * 3:
                 with open('Main_screen.py', "r") as file:
                     exec(file.read())
-                    exit()
+                    exit(0)
 
             self.sc.fill((0, 0, 0))
             game_over_txt = GAME_OVER_FONT.render(f"GAME OVER", 1, (255, 255, 255))
@@ -139,12 +139,12 @@ class Play_mode():
 
             if len(self.enemies) == 0:
                 self.lvl += 1
-                self.wave_len += 1
+                self.wave_len += 2
                 self.bull_shift += 1
-                if self.wave_len == 6:
+                if self.wave_len % 10 == 0:
                     self.player.lives += 1
-                if self.wave_len > 5 and self.wave_len % 2 != 0:
-                    self.player.speed += 1
+                if self.wave_len > 10 and self.wave_len % 2 != 0:
+                    self.player.speed += 2
                 if self.enemy_shift != 7:
                     self.enemy_shift += 1
                 for i in range(self.wave_len):
@@ -257,7 +257,6 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
-
 
     def __init__(self, x, y, hp=10):
         super().__init__()
@@ -387,7 +386,7 @@ class Player_Ship(Super_Ship):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
         self.max_hp = hp
-        self.lives = 5
+        self.lives = 3
         self.speed = 7
         self.bullet_amount = 1
 
