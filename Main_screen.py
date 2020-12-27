@@ -1,6 +1,7 @@
 import csv
 
 import pygame
+import webbrowser
 
 from Scripts.play_mode import Play_mode
 from Scripts.settings_class import Settings
@@ -31,6 +32,8 @@ FIRST_SCREEN = "Res/Audio/first_screen_music.mp3"
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_button.png"),
                                          (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
+INFO_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/info_button.png"),
+                                     (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
@@ -89,6 +92,10 @@ def main_window():
                 rect_2 = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
                                      sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40,
                                      int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
+                rect_3 = pygame.Rect(sc.get_width() - int(str_dict.get('button_x')),
+                                     sc.get_height() - int(str_dict.get('button_y')),
+                                     int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
+
                 if rect_1.collidepoint(pos):
                     run_settings()
                     settings_dict = fill_str('Res/CSV/settings.csv')
@@ -96,6 +103,8 @@ def main_window():
                     stop_all_sound()
                     run_play_mode()
                     update_settings()
+                elif rect_3.collidepoint(pos):
+                    webbrowser.open("https://ru.wikipedia.org/wiki/Shoot_%E2%80%99em_up")
 
 
 def redraw_window():
@@ -105,12 +114,13 @@ def redraw_window():
         shift *= -1
     else:
         time += 1
-    print(shift)
     pygame.display.update()
     sc.blit(BACKGROUND, (0, 0))
     sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
                           sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40))
+    sc.blit(INFO_BUTTON,
+            (sc.get_width() - int(str_dict.get('button_x')), sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(version_txt,
             ((sc.get_width() - version_txt.get_width()) // 2, (sc.get_height() - version_txt.get_height())))
     sc.blit(logo_txt,
