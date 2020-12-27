@@ -5,6 +5,8 @@ from math import sqrt
 
 import pygame
 
+pygame.font.init()
+
 
 def fill_str(name):
     str_dict = {}
@@ -46,7 +48,6 @@ BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
-pygame.font.init()
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
 GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
 
@@ -181,17 +182,17 @@ class Play_mode():
             if keys[pygame.K_ESCAPE]:
                 stop_all_sound()
                 break
-
+            movement = int(self.player.speed * coef)
             if keys[pygame.K_RIGHT] and self.player.rect.x + self.player.speed + int(
                     str_dict.get("ship_x")) < self.frame_w:
-                self.player.rect.x += self.player.speed * coef
+                self.player.rect.x += movement
             if keys[pygame.K_LEFT] and self.player.rect.x - self.player.speed > 0:
-                self.player.rect.x -= self.player.speed * coef
+                self.player.rect.x -= movement
             if keys[pygame.K_UP] and self.player.rect.y - self.player.speed > 0:
-                self.player.rect.y -= self.player.speed * coef
+                self.player.rect.y -= movement
             if keys[pygame.K_DOWN] and self.player.rect.y + self.player.speed + int(
                     str_dict.get("ship_y")) < self.frame_h:
-                self.player.rect.y += self.player.speed * coef
+                self.player.rect.y += movement
             # if keys[pygame.K_SPACE]:
             #     self.player.shoot()
             for enemy in self.enemies:
@@ -256,6 +257,7 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
+
 
     def __init__(self, x, y, hp=10):
         super().__init__()
