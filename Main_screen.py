@@ -34,7 +34,7 @@ SETTINGS_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/settings_
                                          (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 INFO_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/info_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
-PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
+PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/play_button.png"),
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                               (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
@@ -90,7 +90,7 @@ def main_window():
                                      int(str_dict.get('button_y')))
                 # Кнопка начала
                 rect_2 = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40+ shift,
+                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40 + shift,
                                      int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
                 rect_3 = pygame.Rect(sc.get_width() - int(str_dict.get('button_x')),
                                      sc.get_height() - int(str_dict.get('button_y')),

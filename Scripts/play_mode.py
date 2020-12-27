@@ -368,7 +368,7 @@ class Damage_Booster(Super_Booster):
 
     def player_collision(self, player):
         if player.COOLDOWN >= 7:
-            player.COOLDOWN -= 1
+            player.COOLDOWN -= 2
     #     player.damage = 20
     #     t = threading.Timer(5.0, self.normalize, args=(player,))
     #     t.start()
@@ -411,7 +411,7 @@ class Player_Ship(Super_Ship):
 
 
 class Enemy_Ship(Super_Ship):
-    def __init__(self, x, y, hp=15):
+    def __init__(self, x, y, hp=10):
         super().__init__(x, y, hp)
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
@@ -419,3 +419,11 @@ class Enemy_Ship(Super_Ship):
 
     def mover(self, shift):
         self.rect.y += shift
+
+
+class Boss_Ship(Enemy_Ship):
+    def __init__(self, x, y, hp=1500):
+        super().__init__(x, y, hp)
+        self.image = BOSS_SHIP_PNG
+        self.bullet_image = ENEMY_BULLET_PNG
+        self.mask = pygame.mask.from_surface(self.image)
