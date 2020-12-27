@@ -32,6 +32,8 @@ sounds = dict()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
+DAMAGED_PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_player.png"),
+                                                 (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
@@ -48,8 +50,8 @@ BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
-BASIC_FONT = pygame.font.SysFont("comicsans", 20)
-GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 60)
+BASIC_FONT = pygame.font.SysFont("rog_fonts", 15)
+GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
 
 exit_flag = False
 
@@ -218,8 +220,8 @@ class Play_mode():
         pygame.display.update()
         self.sc.blit(BACKGROUND, (0, 0))
         # вывод текстовой информации
-        lvl_lable = BASIC_FONT.render(f"Уровень: {self.lvl}", 1, (255, 255, 255))
-        lives_lable = BASIC_FONT.render(f"Жизни: {self.player.lives}", 1, (255, 255, 255))
+        lvl_lable = BASIC_FONT.render(f"Level: {self.lvl}", 1, (255, 255, 255))
+        lives_lable = BASIC_FONT.render(f"Lives: {self.player.lives}", 1, (255, 255, 255))
         self.sc.blit(self.player.image, self.player.rect)
         self.player.healthbar(self.sc)
         self.player.bullets.draw(self.sc)
@@ -404,6 +406,10 @@ class Player_Ship(Super_Ship):
                             self.bullets.remove(bullet)
 
     def healthbar(self, window):
+        if self.hp < self.max_hp // 2:
+            self.image = DAMAGED_PLAYER_SHIP_PNG
+        else:
+            self.image = PLAYER_SHIP_PNG
         pygame.draw.rect(window, (255, 0, 0),
                          (self.rect.x, self.rect.y + self.image.get_height() + 10, self.image.get_width(), 10))
         pygame.draw.rect(window, (0, 255, 0), (self.rect.x, self.rect.y + self.image.get_height() + 10,
