@@ -52,7 +52,7 @@ DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
 BASIC_FONT = pygame.font.SysFont("rog_fonts", 15)
 GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
-
+time = 0
 exit_flag = False
 
 
@@ -198,6 +198,11 @@ class Play_mode():
             # if keys[pygame.K_SPACE]:
             #     self.player.shoot()
             for enemy in self.enemies:
+                if enemy.time == enemy.r:
+                    enemy.time = 0
+                    enemy.image = pygame.transform.flip(enemy.image, True, False)
+                else:
+                    enemy.time += 1
                 enemy.mover(self.enemy_shift)
                 enemy.move_bullets(self.bull_shift, self.player)
 
@@ -240,6 +245,8 @@ class Super_Bullet(pygame.sprite.Sprite):
         self.image = image
         self.rect = self.image.get_rect(center=(x, y))
         self.mask = pygame.mask.from_surface(self.image)
+        self.time = 0
+        self.r = random.randint(15, 20)
 
     def mover(self, shift):
         self.y += shift
@@ -275,6 +282,7 @@ class Super_Ship(pygame.sprite.Sprite):
         self.bullet_amount = 1
 
     def move_bullets(self, shift, obj):
+
         self.cool_down()
         for bullet in self.bullets:
             bullet.mover(shift)
@@ -422,6 +430,7 @@ class Enemy_Ship(Super_Ship):
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
+
 
     def mover(self, shift):
         self.rect.y += shift
