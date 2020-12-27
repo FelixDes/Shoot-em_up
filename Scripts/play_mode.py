@@ -49,7 +49,7 @@ DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
 BASIC_FONT = pygame.font.SysFont("comicsans", 20)
-GAME_OVER_FONT = pygame.font.SysFont("comicsans", 60)
+GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 60)
 
 exit_flag = False
 

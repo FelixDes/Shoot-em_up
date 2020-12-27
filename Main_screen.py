@@ -39,10 +39,10 @@ PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/Play.png"),
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                               (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 
-BASIC_FONT = pygame.font.SysFont("comicsans", 20)
-LOGO_FONT = pygame.font.SysFont("segoe-ui-symbol", 80)
+BASIC_FONT = pygame.font.SysFont("rog_fonts", 10)
+LOGO_FONT = pygame.font.SysFont("rog_fonts", 50)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
-logo_txt = LOGO_FONT.render("❮ASTERO❯", 1, (200, 255, 255))
+logo_txt = LOGO_FONT.render("<astero>", 1, (255, 255, 255))
 
 shift = 1
 time = 0
@@ -90,7 +90,7 @@ def main_window():
                                      int(str_dict.get('button_y')))
                 # Кнопка начала
                 rect_2 = pygame.Rect(sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40,
+                                     sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40+ shift,
                                      int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y')))
                 rect_3 = pygame.Rect(sc.get_width() - int(str_dict.get('button_x')),
                                      sc.get_height() - int(str_dict.get('button_y')),
@@ -109,7 +109,7 @@ def main_window():
 
 def redraw_window():
     global shift, time
-    if time == 2000:
+    if time == 1000:
         time = 0
         shift *= -1
     else:
@@ -118,7 +118,7 @@ def redraw_window():
     sc.blit(BACKGROUND, (0, 0))
     sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
-                          sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40))
+                          sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40 + shift))
     sc.blit(INFO_BUTTON,
             (sc.get_width() - int(str_dict.get('button_x')), sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(version_txt,

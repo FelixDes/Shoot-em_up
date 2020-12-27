@@ -27,7 +27,7 @@ update_settings()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 BACK_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/back_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
-MAIN_FONT = pygame.font.SysFont("comicsans", 30)
+MAIN_FONT = pygame.font.SysFont("rog_fonts", 20)
 settings_txt = MAIN_FONT.render("Settings", True, (255, 255, 255))
 
 
@@ -35,7 +35,7 @@ class Settings():
     def __init__(self, sounds):
         self.frame_h = int(str_dict.get("h"))
         self.frame_w = int(str_dict.get("w"))
-        self.sc = pygame.display.set_mode((self.frame_w, self.frame_h), pygame.RESIZABLE)
+        self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
 
         self.mus_curr_vol = 0
         self.snd_curr_vol = 0
@@ -85,15 +85,14 @@ class Settings():
 
     def redraw_window(self):
         # Текст около слайдеров
-        font = pygame.font.Font(None, 50)
-        sound_text = font.render("Sound:", True, (170, 170, 170))
-        music_text = font.render("Music:", True, (170, 170, 170))
+        sound_text = MAIN_FONT.render("Sound:", True, (170, 170, 170))
+        music_text = MAIN_FONT.render("Music:", True, (170, 170, 170))
 
         self.sc.blit(BACKGROUND, (0, 0))
         self.sc.blit(BACK_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
         # Текст около слайдеров
-        self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10 - 10))
-        self.sc.blit(music_text, (self.frame_w * 1 // 10 - 1, self.frame_h * 2 // 10 - 10))
+        self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10-5))
+        self.sc.blit(music_text, (self.frame_w * 1 // 10 - 1, self.frame_h * 2 // 10-5))
         self.sc.blit(settings_txt, ((self.frame_w - settings_txt.get_width()) // 2, settings_txt.get_height()))
 
         self.music_vol_slider.draw()
