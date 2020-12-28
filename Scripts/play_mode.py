@@ -280,6 +280,8 @@ class Super_Ship(pygame.sprite.Sprite):
         self.bullets_cool_down = 0
         self.bullets = pygame.sprite.Group()
         self.bullet_amount = 1
+        self.r = random.randint(30, 50)
+        self.time = 0
 
     def move_bullets(self, shift, obj):
 
