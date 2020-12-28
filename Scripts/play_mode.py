@@ -104,6 +104,9 @@ class Play_mode():
         pygame.mixer.init()
         pygame.mixer.set_num_channels(50)
 
+        self.BACKGROUND_offset = 0
+        self.BACKGROUND_speed = 10
+
     def end_game(self):
         global exit_flag
         time = 4
@@ -223,7 +226,14 @@ class Play_mode():
 
     def redraw_window(self):
         pygame.display.update()
-        self.sc.blit(BACKGROUND, (0, 0))
+
+        # Движение фона
+        self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset - BACKGROUND.get_height()))
+        self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset))
+        self.BACKGROUND_offset += self.BACKGROUND_speed
+        if self.BACKGROUND_offset == BACKGROUND.get_height():
+            self.BACKGROUND_offset = 0
+
         # вывод текстовой информации
         lvl_lable = BASIC_FONT.render(f"Level: {self.lvl}", 1, (255, 255, 255))
         lives_lable = BASIC_FONT.render(f"Lives: {self.player.lives}", 1, (255, 255, 255))
