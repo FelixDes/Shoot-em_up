@@ -46,10 +46,13 @@ class Settings():
         self.music_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 2 // 10, 100, 20,
                                        colour=(100, 100, 100), handleColour=(40, 40, 40))
         update_settings()
-        print(settings_dict)
-        print(int(float(settings_dict.get('music_volume')) * 100), int(float(settings_dict.get('sound_volume')) * 100))
         self.sound_vol_slider.setValue(int(float(settings_dict.get('sound_volume')) * 100))
         self.music_vol_slider.setValue(int(float(settings_dict.get('music_volume')) * 100))
+
+        self.BACKGROUND_offset = 0
+        self.BACKGROUND_speed = 3
+        self.FPS = int(str_dict.get("FPS"))
+        self.clock = pygame.time.Clock()
 
     def run(self):
         global event
@@ -57,8 +60,7 @@ class Settings():
             events = pygame.event.get()
             self.music_vol_slider.listen(events)
             self.sound_vol_slider.listen(events)
-
-            self.redraw_window()
+            self.clock.tick(self.FPS)
             for event in events:
                 if event.type == pygame.QUIT:
                     exit(0)
@@ -82,13 +84,19 @@ class Settings():
                                                 delimiter=',', quoting=csv.QUOTE_ALL)
                             writer.writerows(write)
                         return
+            self.redraw_window()
 
     def redraw_window(self):
         # Текст около слайдеров
         sound_text = MAIN_FONT.render("Sound:", True, (170, 170, 170))
         music_text = MAIN_FONT.render("Music:", True, (170, 170, 170))
 
-        self.sc.blit(BACKGROUND, (0, 0))
+        # Движение фона
+        self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset - BACKGROUND.get_height()))
+        self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset))
+        self.BACKGROUND_offset += self.BACKGROUND_speed
+        if self.BACKGROUND_offset == BACKGROUND.get_height():
+            self.BACKGROUND_offset = 0
         self.sc.blit(BACK_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
         # Текст около слайдеров
         self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10-5))

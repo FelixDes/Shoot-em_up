@@ -27,10 +27,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/settings_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/settings_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609106777351</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="BACKGROUND_movement_added">
+      <created>1609173186332</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1609173186332</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,7 +360,8 @@
     <MESSAGE value="Minor_bug_fix" />
     <MESSAGE value="New_play_button_asset" />
     <MESSAGE value="Enemy_flip_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enemy_flip_added" />
+    <MESSAGE value="BACKGROUND_movement_added" />
+    <option name="LAST_COMMIT_MESSAGE" value="BACKGROUND_movement_added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

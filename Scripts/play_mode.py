@@ -105,7 +105,7 @@ class Play_mode():
         pygame.mixer.set_num_channels(50)
 
         self.BACKGROUND_offset = 0
-        self.BACKGROUND_speed = 10
+        self.BACKGROUND_speed = 4
 
     def end_game(self):
         global exit_flag

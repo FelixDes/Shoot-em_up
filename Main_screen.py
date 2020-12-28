@@ -18,6 +18,8 @@ def fill_str(name):
 
 str_dict = fill_str('Res/CSV/const.csv')
 settings_dict = dict()
+FPS = int(str_dict.get("FPS"))
+clock = pygame.time.Clock()
 
 
 def update_settings():
@@ -27,6 +29,9 @@ def update_settings():
 
 update_settings()
 sounds = {}
+
+BACKGROUND_offset = 0
+BACKGROUND_speed = 3
 
 FIRST_SCREEN = "Res/Audio/first_screen_music.mp3"
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
@@ -76,10 +81,10 @@ def stop_all_sound():
 def main_window():
     global event, settings_dict
     update_settings()
-    play_sound(FIRST_SCREEN, -1, True)
+    if not any(filter(lambda x: 'music' in x, sounds)):
+            play_sound(FIRST_SCREEN, -1, True)
     while True:
-
-        redraw_window()
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit(0)
@@ -105,17 +110,24 @@ def main_window():
                     update_settings()
                 elif rect_3.collidepoint(pos):
                     webbrowser.open("https://ru.wikipedia.org/wiki/Shoot_%E2%80%99em_up")
+        redraw_window()
+
 
 
 def redraw_window():
-    global shift, time
+    global shift, time, BACKGROUND_offset, BACKGROUND_speed
     if time == 1000:
         time = 0
         shift *= -1
     else:
         time += 1
     pygame.display.update()
-    sc.blit(BACKGROUND, (0, 0))
+    # Движение фона
+    sc.blit(BACKGROUND, (0, BACKGROUND_offset - BACKGROUND.get_height()))
+    sc.blit(BACKGROUND, (0, BACKGROUND_offset))
+    BACKGROUND_offset += BACKGROUND_speed
+    if BACKGROUND_offset == BACKGROUND.get_height():
+        BACKGROUND_offset = 0
     sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
                           sc.get_height() // 2 - int(str_dict.get('Play_button_y')) // 2 + 40 + shift))
@@ -131,13 +143,13 @@ def redraw_window():
 def run_settings():
     s = Settings(sounds)
     s.run()
-    stop_all_sound()
     main_window()
 
 
 def run_play_mode():
     m = Play_mode()
     m.run()
+    play_sound(FIRST_SCREEN, -1, True)
 
 
 if __name__ == "__main__":
