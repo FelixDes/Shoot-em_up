@@ -306,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609173186332</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed_music&#10;Menu_background_movement_added">
+      <created>1609174561367</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1609174561367</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -361,7 +368,8 @@
     <MESSAGE value="New_play_button_asset" />
     <MESSAGE value="Enemy_flip_added" />
     <MESSAGE value="BACKGROUND_movement_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="BACKGROUND_movement_added" />
+    <MESSAGE value="Fixed_music&#10;Menu_background_movement_added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed_music&#10;Menu_background_movement_added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

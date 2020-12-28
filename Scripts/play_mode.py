@@ -231,7 +231,7 @@ class Play_mode():
         self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset - BACKGROUND.get_height()))
         self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset))
         self.BACKGROUND_offset += self.BACKGROUND_speed
-        if self.BACKGROUND_offset == BACKGROUND.get_height():
+        if self.BACKGROUND_offset > BACKGROUND.get_height():
             self.BACKGROUND_offset = 0
 
         # вывод текстовой информации

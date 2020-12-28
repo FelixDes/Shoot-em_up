@@ -95,7 +95,7 @@ class Settings():
         self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset - BACKGROUND.get_height()))
         self.sc.blit(BACKGROUND, (0, self.BACKGROUND_offset))
         self.BACKGROUND_offset += self.BACKGROUND_speed
-        if self.BACKGROUND_offset == BACKGROUND.get_height():
+        if self.BACKGROUND_offset > BACKGROUND.get_height():
             self.BACKGROUND_offset = 0
         self.sc.blit(BACK_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
         # Текст около слайдеров

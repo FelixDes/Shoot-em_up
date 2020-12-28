@@ -126,7 +126,7 @@ def redraw_window():
     sc.blit(BACKGROUND, (0, BACKGROUND_offset - BACKGROUND.get_height()))
     sc.blit(BACKGROUND, (0, BACKGROUND_offset))
     BACKGROUND_offset += BACKGROUND_speed
-    if BACKGROUND_offset == BACKGROUND.get_height():
+    if BACKGROUND_offset > BACKGROUND.get_height():
         BACKGROUND_offset = 0
     sc.blit(SETTINGS_BUTTON, (0, sc.get_height() - int(str_dict.get('button_y'))))
     sc.blit(PLAY_BUTTON, (sc.get_width() // 2 - int(str_dict.get('Play_button_x')) // 2,
