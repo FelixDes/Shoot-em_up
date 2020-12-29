@@ -29,6 +29,10 @@ def update_settings():
 update_settings()
 # Словарь со звуками
 sounds = dict()
+explosion = []
+for i in range(1, 8):
+    explosion.append(
+        pygame.transform.scale(pygame.image.load("Res/Assets/Explosion/{}.png".format(i)), (40, 40)))
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
                                          (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
@@ -54,6 +58,7 @@ BASIC_FONT = pygame.font.SysFont("rog_fonts", 15)
 GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
 time = 0
 exit_flag = False
+exp_s = pygame.sprite.Group()
 
 
 # Проигрывание звуков/музыки, чтобы музыка повторялась в loops надо передать -1,
@@ -95,6 +100,7 @@ class Play_mode():
                                   self.frame_h - int(str_dict.get('ship_y')) - 30)
         self.enemies = pygame.sprite.Group()
         self.boosters = pygame.sprite.Group()
+
         self.wave_len = 0
         self.enemy_shift = 2
         self.bull_shift = 7
@@ -105,7 +111,7 @@ class Play_mode():
         pygame.mixer.set_num_channels(50)
 
         self.BACKGROUND_offset = 0
-        self.BACKGROUND_speed = 4
+        self.BACKGROUND_speed = 2
 
     def end_game(self):
         global exit_flag
@@ -134,6 +140,7 @@ class Play_mode():
             pygame.display.update()
 
     def run(self):
+        global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
         while True:
             self.player.shoot()
@@ -221,6 +228,12 @@ class Play_mode():
                     self.player.lives -= 1
                     self.enemies.remove(enemy)
 
+            for exp in exp_s:
+                if exp.c == 6:
+                    exp_s.remove(exp)
+                else:
+                    exp.c += 1
+
             self.player.move_bullets(-self.bull_shift, self.enemies)
             self.redraw_window()
 
@@ -243,6 +256,11 @@ class Play_mode():
         self.enemies.draw(self.sc)
         for enemy in self.enemies:
             enemy.bullets.draw(self.sc)
+        for exp in exp_s:
+            print(exp.c)
+            print(len(explosion))
+            print(explosion[6])
+            self.sc.blit(explosion[exp.c], (exp.x, exp.y))
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
         self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
 
@@ -276,6 +294,7 @@ def collide(obj1, obj2):
 
 
 class Super_Ship(pygame.sprite.Sprite):
+    global exp_s
 
     def __init__(self, x, y, hp=10):
         super().__init__()
@@ -294,7 +313,6 @@ class Super_Ship(pygame.sprite.Sprite):
         self.time = 0
 
     def move_bullets(self, shift, obj):
-
         self.cool_down()
         for bullet in self.bullets:
             bullet.mover(shift)
@@ -305,6 +323,8 @@ class Super_Ship(pygame.sprite.Sprite):
                 play_sound(DAMAGE_SOUND, 0, True)
                 obj.hp -= self.damage
                 self.bullets.remove(bullet)
+                exp = Explosion(bullet.x, bullet.y)
+                exp_s.add(exp)
 
     def cool_down(self):
         if self.bullets_cool_down >= self.COOLDOWN:
@@ -424,6 +444,8 @@ class Player_Ship(Super_Ship):
                         objs.remove(obj)
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
+                            exp = Explosion(bullet.x - 20, bullet.y - 20)
+                            exp_s.add(exp)
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
@@ -443,7 +465,6 @@ class Enemy_Ship(Super_Ship):
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
 
-
     def mover(self, shift):
         self.rect.y += shift
 
@@ -454,3 +475,17 @@ class Boss_Ship(Enemy_Ship):
         self.image = BOSS_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
+
+
+class Explosion(pygame.sprite.Sprite):
+    def __init__(self, x, y, delay=1):
+        super().__init__()
+        self.x = x
+        self.y = y
+        self.c = 0
+        self.explosion = explosion
+        self.delay = delay
+
+    def draw_explosion(self, sc):
+        for i in self.explosion:
+            print("exp")

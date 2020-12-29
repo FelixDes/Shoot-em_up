@@ -1,7 +1,7 @@
 import csv
+import webbrowser
 
 import pygame
-import webbrowser
 
 from Scripts.play_mode import Play_mode
 from Scripts.settings_class import Settings
@@ -31,7 +31,7 @@ update_settings()
 sounds = {}
 
 BACKGROUND_offset = 0
-BACKGROUND_speed = 3
+BACKGROUND_speed = 2
 
 FIRST_SCREEN = "Res/Audio/first_screen_music.mp3"
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
@@ -82,7 +82,7 @@ def main_window():
     global event, settings_dict
     update_settings()
     if not any(filter(lambda x: 'music' in x, sounds)):
-            play_sound(FIRST_SCREEN, -1, True)
+        play_sound(FIRST_SCREEN, -1, True)
     while True:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -113,10 +113,9 @@ def main_window():
         redraw_window()
 
 
-
 def redraw_window():
     global shift, time, BACKGROUND_offset, BACKGROUND_speed
-    if time == 1000:
+    if time == 500:
         time = 0
         shift *= -1
     else:
