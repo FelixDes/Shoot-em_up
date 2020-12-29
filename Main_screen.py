@@ -49,7 +49,7 @@ LOGO_FONT = pygame.font.SysFont("rog_fonts", 50)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
 logo_txt = LOGO_FONT.render("<astero>", 1, (255, 255, 255))
 
-shift = 1
+shift = 3
 time = 0
 
 
@@ -79,7 +79,7 @@ def stop_all_sound():
 
 
 def main_window():
-    global event, settings_dict
+    global event, settings_dict, shift
     update_settings()
     if not any(filter(lambda x: 'music' in x, sounds)):
         play_sound(FIRST_SCREEN, -1, True)
@@ -115,7 +115,7 @@ def main_window():
 
 def redraw_window():
     global shift, time, BACKGROUND_offset, BACKGROUND_speed
-    if time == 500:
+    if time == 50:
         time = 0
         shift *= -1
     else:

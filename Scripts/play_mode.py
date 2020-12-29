@@ -257,9 +257,6 @@ class Play_mode():
         for enemy in self.enemies:
             enemy.bullets.draw(self.sc)
         for exp in exp_s:
-            print(exp.c)
-            print(len(explosion))
-            print(explosion[6])
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
         self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
