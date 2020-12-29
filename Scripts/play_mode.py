@@ -49,12 +49,14 @@ ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.l
                                                                    int(str_dict.get('bullet_y')))), 180)
 BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/power_up.png"),
                                      (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
+STAT_GALSS = pygame.transform.scale(pygame.image.load("Res/Assets/stat_glass.png"),
+                                    (120, 80))
 ICON = ENEMY_SHIP_PNG
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
-BASIC_FONT = pygame.font.SysFont("rog_fonts", 15)
+BASIC_FONT = pygame.font.SysFont("rog_fonts", 17)
 GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
 time = 0
 exit_flag = False
@@ -248,18 +250,22 @@ class Play_mode():
             self.BACKGROUND_offset = 0
 
         # вывод текстовой информации
-        lvl_lable = BASIC_FONT.render(f"Level: {self.lvl}", 1, (255, 255, 255))
+        lvl_lable = BASIC_FONT.render(f"Level:  {self.lvl}", 1, (255, 255, 255))
         lives_lable = BASIC_FONT.render(f"Lives: {self.player.lives}", 1, (255, 255, 255))
+
         self.sc.blit(self.player.image, self.player.rect)
         self.player.healthbar(self.sc)
         self.player.bullets.draw(self.sc)
         self.enemies.draw(self.sc)
-        for enemy in self.enemies:
-            enemy.bullets.draw(self.sc)
+
         for exp in exp_s:
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
-        self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 10, 5))
-        self.sc.blit(lives_lable, (self.frame_w - lives_lable.get_width() - 10, 10 + lvl_lable.get_height()))
+        for enemy in self.enemies:
+            enemy.bullets.draw(self.sc)
+        self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 5, 3))
+        self.sc.blit(lives_lable,
+                     (self.frame_w - lives_lable.get_width() - 5, lvl_lable.get_height() + 3))
+        self.sc.blit(STAT_GALSS, (self.sc.get_width() - STAT_GALSS.get_width(), 0))
 
 
 class Super_Bullet(pygame.sprite.Sprite):
@@ -428,6 +434,7 @@ class Player_Ship(Super_Ship):
         self.lives = 3
         self.speed = 7
         self.bullet_amount = 1
+        self.flag = False
 
     def move_bullets(self, shift, objs):
         self.cool_down()
@@ -446,9 +453,16 @@ class Player_Ship(Super_Ship):
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
+            if self.flag is False:
+                exp_s.add(Explosion(self.rect.x, self.rect.y + self.image.get_width()))
+                exp_s.add(Explosion(self.rect.x + self.image.get_height(), self.rect.y + self.image.get_width()))
+                exp_s.add(
+                    Explosion(self.rect.x + self.image.get_height() // 2, self.rect.y + self.image.get_width() // 2))
+                self.flag = True
             self.image = DAMAGED_PLAYER_SHIP_PNG
         else:
             self.image = PLAYER_SHIP_PNG
+            self.flag = False
         pygame.draw.rect(window, (255, 0, 0),
                          (self.rect.x, self.rect.y + self.image.get_height() + 10, self.image.get_width(), 10))
         pygame.draw.rect(window, (0, 255, 0), (self.rect.x, self.rect.y + self.image.get_height() + 10,

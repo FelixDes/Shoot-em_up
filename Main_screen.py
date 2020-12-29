@@ -49,7 +49,7 @@ LOGO_FONT = pygame.font.SysFont("rog_fonts", 50)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
 logo_txt = LOGO_FONT.render("<astero>", 1, (255, 255, 255))
 
-shift = 3
+shift = 1
 time = 0
 
 
