@@ -323,7 +323,7 @@ class Super_Ship(pygame.sprite.Sprite):
                 play_sound(DAMAGE_SOUND, 0, True)
                 obj.hp -= self.damage
                 self.bullets.remove(bullet)
-                exp = Explosion(bullet.x, bullet.y)
+                exp = Explosion(bullet.x - 20, bullet.y - 20)
                 exp_s.add(exp)
 
     def cool_down(self):
