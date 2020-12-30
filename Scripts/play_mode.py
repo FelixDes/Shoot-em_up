@@ -216,9 +216,11 @@ class Play_mode():
             # if keys[pygame.K_SPACE]:
             #     self.player.shoot()
             for enemy in self.enemies:
+                if enemy.hp <= 0:
+                    enemy.image = pygame.transform.flip(enemy.image, True, False)
+                    enemy.remove(self.enemies)
                 if enemy.time == enemy.r:
                     enemy.time = 0
-                    enemy.image = pygame.transform.flip(enemy.image, True, False)
                 else:
                     enemy.time += 1
                 enemy.mover(self.enemy_shift)
@@ -268,6 +270,7 @@ class Play_mode():
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
         for enemy in self.enemies:
             enemy.bullets.draw(self.sc)
+            enemy.healthbar(self.sc)
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 5, 3))
         self.sc.blit(lives_lable,
                      (self.frame_w - lives_lable.get_width() - 5, lvl_lable.get_height() + 3))
@@ -307,7 +310,7 @@ class Super_Ship(pygame.sprite.Sprite):
 
     def __init__(self, x, y, hp=10):
         super().__init__()
-        self.hp = hp
+        self.hp = self.max_hp = hp
         self.COOLDOWN = 13
         self.damage = 10
         self.image = ENEMY_SHIP_PNG
@@ -356,6 +359,14 @@ class Super_Ship(pygame.sprite.Sprite):
             bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2, self.rect.y + 20, self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
+
+    def healthbar(self, window):
+        pygame.draw.rect(window, (255, 0, 0),
+                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
+                          self.image.get_width(), 10))
+        pygame.draw.rect(window, (0, 255, 0),
+                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
+                          self.image.get_width() * (self.hp / self.max_hp), 10))
 
 
 class Super_Booster(pygame.sprite.Sprite):
@@ -436,7 +447,6 @@ class Player_Ship(Super_Ship):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
-        self.max_hp = hp
         self.lives = 3
         self.speed = 7
         self.bullet_amount = 1
@@ -451,7 +461,7 @@ class Player_Ship(Super_Ship):
             else:
                 for obj in objs:
                     if bullet.collision(obj):
-                        objs.remove(obj)
+                        obj.hp -= 10
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
                             exp = Explosion(bullet.x - 20, bullet.y - 20)
@@ -469,15 +479,12 @@ class Player_Ship(Super_Ship):
         else:
             self.image = PLAYER_SHIP_PNG
             self.flag = False
-        pygame.draw.rect(window, (255, 0, 0),
-                         (self.rect.x, self.rect.y + self.image.get_height() + 10, self.image.get_width(), 10))
-        pygame.draw.rect(window, (0, 255, 0), (self.rect.x, self.rect.y + self.image.get_height() + 10,
-                                               self.image.get_width() * (self.hp / self.max_hp), 10))
+        super(Player_Ship, self).healthbar(window)
 
 
 class Enemy_Ship(Super_Ship):
     def __init__(self, x, y, hp=10):
-        super().__init__(x, y, hp)
+        super().__init__(x, y, 30)
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
