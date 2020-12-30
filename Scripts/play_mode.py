@@ -94,6 +94,7 @@ class Play_mode():
         self.frame_h = int(str_dict.get("h"))
         self.frame_w = int(str_dict.get("w"))
         self.FPS = int(str_dict.get("FPS"))
+        self.BOOSTERS = int(str_dict.get("Boosters"))
         self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
         pygame.display.set_caption(str_dict.get("Name"))
         pygame.display.set_icon(ICON)
@@ -165,7 +166,7 @@ class Play_mode():
                     enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50), random.randrange(-1500, -100))
                     self.enemies.add(enemy)
             # Создвние бустеров
-            rand = random.randint(0, 2500)
+            rand = random.randint(0, self.BOOSTERS)
             if rand == 1:
                 self.boosters.add(Live_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 2:
@@ -183,6 +184,11 @@ class Play_mode():
                 if collide(booster, self.player):
                     booster.player_collision(self.player)
                     self.boosters.remove(booster)
+            boost_collision = pygame.sprite.groupcollide(self.player.bullets,
+                                                         self.boosters, True, True)
+            if boost_collision:
+                boost_collision[list(boost_collision.keys())[0]][0].player_collision(self.player)
+
             # цикл обработки событий
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

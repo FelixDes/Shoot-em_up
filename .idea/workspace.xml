@@ -27,13 +27,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/enemy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/enemy.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/space.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/space.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Res/CSV/const.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/const.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Res/CSV/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/settings.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/stat_glass/6486221818946662400.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,20 +64,18 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../IMF_REPET" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Space-Shooter-Tutorial" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\glass" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\stat_glass" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
     </key>
   </component>
   <component name="RunManager">
@@ -110,7 +106,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -255,91 +251,7 @@
       <option name="project" value="LOCAL" />
       <updated>1609002402323</updated>
     </task>
-    <task id="LOCAL-00020" summary="Slider_fix">
-      <created>1609004208954</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1609004208954</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Logo_animation_added">
-      <created>1609065373966</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1609065373966</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Info_button_added">
-      <created>1609067957586</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1609067957586</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Interface_fixes">
-      <created>1609072469065</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1609072469065</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Minor_bug_fix">
-      <created>1609077134095</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1609077134095</updated>
-    </task>
-    <task id="LOCAL-00025" summary="New_play_button_asset">
-      <created>1609085469391</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1609085469391</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Enemy_flip_added">
-      <created>1609106777351</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1609106777351</updated>
-    </task>
-    <task id="LOCAL-00027" summary="BACKGROUND_movement_added">
-      <created>1609173186332</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1609173186332</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Animations_added">
-      <created>1609233865040</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1609233865041</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Animations_bug_fix">
-      <created>1609234139390</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1609234139390</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Minor_bug_fix">
-      <created>1609248820727</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1609248820727</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Minor_bug_fix">
-      <created>1609258031885</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1609258031885</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,66 +298,98 @@
     <MESSAGE value="Fixed_all_speeds_and_spawn_rates&#10;Stable_beta" />
     <MESSAGE value="Multishot_added" />
     <MESSAGE value="Naming_and_icon_added" />
-    <MESSAGE value="Slider_fix" />
-    <MESSAGE value="Logo_animation_added" />
-    <MESSAGE value="Info_button_added" />
-    <MESSAGE value="Interface_fixes" />
-    <MESSAGE value="New_play_button_asset" />
-    <MESSAGE value="Enemy_flip_added" />
-    <MESSAGE value="BACKGROUND_movement_added" />
-    <MESSAGE value="Animations_added" />
-    <MESSAGE value="Animations_bug_fix" />
     <MESSAGE value="Minor_bug_fix" />
     <option name="LAST_COMMIT_MESSAGE" value="Minor_bug_fix" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="81" key="CommitChangelistDialog2" timestamp="1609258031009">
+    <state x="586" y="198" key="#Inspections" timestamp="1607625209302">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="81" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609258031009" />
-    <state x="184" y="85" key="DiffContextDialog" timestamp="1609258005022">
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607625209302" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605183677739">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="85" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609258005022" />
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1609241457210">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605183677739" />
+    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608138254424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609241457210" />
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1609361427931">
+    <state x="713" y="318" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608138254424" />
+    <state x="558" y="83" key="CommitChangelistDialog2" timestamp="1609002401144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
-    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1609361427931">
+    <state x="558" y="83" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609002401144" />
+    <state x="167" y="158" width="1736" height="849" key="DiffContextDialog" timestamp="1608985776576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
-    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1609361427930">
+    <state x="167" y="158" width="1736" height="849" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608985776576" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1608997327658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427930" />
-    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1609361427931">
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608997327658" />
+    <state width="1515" height="389" key="GridCell.Tab.0.bottom" timestamp="1609368609000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="389" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609368609000" />
+    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
+    <state width="1515" height="389" key="GridCell.Tab.0.center" timestamp="1609368609000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="389" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609368609000" />
+    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
+    <state width="1515" height="389" key="GridCell.Tab.0.left" timestamp="1609368609000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="389" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609368609000" />
+    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123224" />
+    <state width="1515" height="389" key="GridCell.Tab.0.right" timestamp="1609368609000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="389" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609368609000" />
+    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609004123225" />
+    <state width="1877" height="349" key="GridCell.Tab.1.bottom" timestamp="1607627366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
-    <state width="1877" height="384" key="GridCell.Tab.1.bottom" timestamp="1609233424543">
+    <state width="1877" height="349" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607627366421" />
+    <state width="1877" height="349" key="GridCell.Tab.1.center" timestamp="1607627366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="384" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609233424543" />
-    <state width="1877" height="384" key="GridCell.Tab.1.center" timestamp="1609233424543">
+    <state width="1877" height="349" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607627366421" />
+    <state width="1877" height="349" key="GridCell.Tab.1.left" timestamp="1607627366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="384" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609233424543" />
-    <state width="1877" height="384" key="GridCell.Tab.1.left" timestamp="1609233424543">
+    <state width="1877" height="349" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607627366421" />
+    <state width="1877" height="349" key="GridCell.Tab.1.right" timestamp="1607627366421">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="384" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609233424543" />
-    <state width="1877" height="384" key="GridCell.Tab.1.right" timestamp="1609233424543">
+    <state width="1877" height="349" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607627366421" />
+    <state x="595" y="279" key="MultipleFileMergeDialog" timestamp="1607193396530">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="384" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609233424543" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1609258035300">
+    <state x="595" y="279" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607193396530" />
+    <state x="369" y="115" key="SettingsEditor" timestamp="1609367202745">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="369" y="115" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609367202745" />
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606837877765" />
+    <state x="-139" y="794" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1607244313292">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609258035300" />
+    <state x="-139" y="794" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607244313292" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1609002404607">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609002404607" />
+    <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608314701466">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="753" y="431" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608314701466" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607625835555">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607625835555" />
+    <state x="790" y="310" key="svn.repositoryBrowser" timestamp="1605108836264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="790" y="310" key="svn.repositoryBrowser/0.0.1920.1040@0.0.1920.1040" timestamp="1605108836264" />
   </component>
 </project>
