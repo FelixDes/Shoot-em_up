@@ -27,14 +27,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Res/Assets/stat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Res/stat_glass/6486221818946662400.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_screen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/bullet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/damaged_player.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/damaged_player.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Res/Assets/enemy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/enemy.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Res/Assets/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/player.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/Assets/space.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/space.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/const.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/const.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/settings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/stat_glass/6486221818946662400.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,16 +70,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\glass" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\stat_glass" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
     </key>
   </component>
   <component name="RunManager">
@@ -333,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609248820727</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Minor_bug_fix">
+      <created>1609258031885</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1609258031885</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -393,30 +399,34 @@
     <option name="LAST_COMMIT_MESSAGE" value="Minor_bug_fix" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="81" key="CommitChangelistDialog2" timestamp="1609248819563">
+    <state x="558" y="81" key="CommitChangelistDialog2" timestamp="1609258031009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="81" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609248819563" />
+    <state x="558" y="81" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1609258031009" />
+    <state x="184" y="85" key="DiffContextDialog" timestamp="1609258005022">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="85" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609258005022" />
     <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1609241457210">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609241457210" />
-    <state width="1877" height="439" key="GridCell.Tab.0.bottom" timestamp="1609257881889">
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1609361427931">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="439" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609257881889" />
-    <state width="1877" height="439" key="GridCell.Tab.0.center" timestamp="1609257881889">
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
+    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1609361427931">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="439" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609257881889" />
-    <state width="1877" height="439" key="GridCell.Tab.0.left" timestamp="1609257881889">
+    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
+    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1609361427930">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="439" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609257881889" />
-    <state width="1877" height="439" key="GridCell.Tab.0.right" timestamp="1609257881889">
+    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427930" />
+    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1609361427931">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="439" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609257881889" />
+    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609361427931" />
     <state width="1877" height="384" key="GridCell.Tab.1.bottom" timestamp="1609233424543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -433,20 +443,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="384" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609233424543" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1609248832575">
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1609258035300">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609248832575" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Scripts/play_mode.py</url>
-          <line>261</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609258035300" />
   </component>
 </project>

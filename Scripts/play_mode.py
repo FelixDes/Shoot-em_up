@@ -341,13 +341,13 @@ class Super_Ship(pygame.sprite.Sprite):
             if self.bullet_amount != 1:
                 for i in range(1, self.bullet_amount):
                     if i % 2 != 0:
-                        bullet = Super_Bullet(self.rect.x + 25 + i * 10, self.rect.y + 20, self.bullet_image)
+                        bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2 + i * 10, self.rect.y + 20, self.bullet_image)
                         self.bullets.add(bullet)
                 for i in range(1, self.bullet_amount):
                     if i % 2 != 0:
-                        bullet = Super_Bullet(self.rect.x + 25 - i * 10, self.rect.y + 20, self.bullet_image)
+                        bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2 - i * 10, self.rect.y + 20, self.bullet_image)
                         self.bullets.add(bullet)
-            bullet = Super_Bullet(self.rect.x + 25, self.rect.y + 20, self.bullet_image)
+            bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2, self.rect.y + 20, self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
 
@@ -496,7 +496,3 @@ class Explosion(pygame.sprite.Sprite):
         self.c = 0
         self.explosion = explosion
         self.delay = delay
-
-    def draw_explosion(self, sc):
-        for i in self.explosion:
-            print("exp")
