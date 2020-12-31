@@ -146,7 +146,7 @@ class Play_mode():
         global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
         while True:
-            self.player.shoot()
+            #  self.player.shoot()
             self.clock.tick(self.FPS)
 
             if self.player.lives <= 0 or self.player.hp <= 0:
@@ -185,7 +185,7 @@ class Play_mode():
             boost_collision = pygame.sprite.groupcollide(self.player.bullets,
                                                          self.boosters, True, True)
             if boost_collision:
-                boost_collision[list(boost_collision.keys())[0]][0].player_collision(self.player)
+                boost_collision[list(boost_collision.keys())[0]][0].bullet_collision()
 
             # цикл обработки событий
             for event in pygame.event.get():
@@ -211,8 +211,8 @@ class Play_mode():
             if keys[pygame.K_DOWN] and self.player.rect.y + self.player.speed + int(
                     str_dict.get("ship_y")) < self.frame_h:
                 self.player.rect.y += movement
-            # if keys[pygame.K_SPACE]:
-            #     self.player.shoot()
+            if keys[pygame.K_SPACE]:
+                self.player.shoot()
             for enemy in self.enemies:
                 if enemy.hp <= 0:
                     enemy.image = pygame.transform.flip(enemy.image, True, False)
@@ -380,6 +380,9 @@ class Super_Booster(pygame.sprite.Sprite):
     def move(self):
         self.rect.y += self.speed
         self.y = self.rect.y
+
+    def bullet_collision(self):
+        self.kill()
 
 
 class Health_Booster(Super_Booster):
