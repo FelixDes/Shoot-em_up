@@ -177,8 +177,6 @@ class Play_mode():
                 self.boosters.add(Damage_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
             elif rand == 5 and self.player.bullet_amount < 5:
                 self.boosters.add(Gun_Booster(random.randint(50, self.frame_w - 50), self.enemy_shift))
-            self.enemies.draw(self.sc)
-            self.boosters.draw(self.sc)
             for booster in self.boosters:
                 booster.move()
                 if collide(booster, self.player):
@@ -265,6 +263,7 @@ class Play_mode():
         self.player.healthbar(self.sc)
         self.player.bullets.draw(self.sc)
         self.enemies.draw(self.sc)
+        self.boosters.draw(self.sc)
 
         for exp in exp_s:
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
@@ -362,11 +361,11 @@ class Super_Ship(pygame.sprite.Sprite):
 
     def healthbar(self, window):
         pygame.draw.rect(window, (255, 0, 0),
-                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
-                          self.image.get_width(), 10))
+                         (self.rect.x, self.rect.y - self.image.get_height() + 50,
+                          self.image.get_width(), 5))
         pygame.draw.rect(window, (0, 255, 0),
-                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
-                          self.image.get_width() * (self.hp / self.max_hp), 10))
+                         (self.rect.x, self.rect.y - self.image.get_height() + 50,
+                          self.image.get_width() * (self.hp / self.max_hp), 5))
 
 
 class Super_Booster(pygame.sprite.Sprite):
@@ -479,7 +478,12 @@ class Player_Ship(Super_Ship):
         else:
             self.image = PLAYER_SHIP_PNG
             self.flag = False
-        super(Player_Ship, self).healthbar(window)
+        pygame.draw.rect(window, (255, 0, 0),
+                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
+                          self.image.get_width(), 10))
+        pygame.draw.rect(window, (0, 255, 0),
+                         (self.rect.x, self.rect.y + self.image.get_height() + 10,
+                          self.image.get_width() * (self.hp / self.max_hp), 10))
 
 
 class Enemy_Ship(Super_Ship):
