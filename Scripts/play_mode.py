@@ -58,6 +58,7 @@ DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
 BASIC_FONT = pygame.font.SysFont("rog_fonts", 17)
 GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
+PAUSE_FONT = pygame.font.SysFont("rog_fonts", 80)
 time = 0
 exit_flag = False
 exp_s = pygame.sprite.Group()
@@ -142,6 +143,21 @@ class Play_mode():
 
             pygame.display.update()
 
+    def pause(self):
+        pause_surface = pygame.Surface((self.frame_w, self.frame_h), pygame.SRCALPHA)
+        pygame.draw.rect(pause_surface, (0, 0, 0, 128), (0, 0, self.frame_w, self.frame_h))
+        self.sc.blit(pause_surface, (0, 0))
+        pause_txt = PAUSE_FONT.render(f"PAUSE", 1, (255, 255, 255))
+        self.sc.blit(pause_txt, ((self.frame_w - pause_txt.get_width()) // 2,
+                                     (self.frame_h - pause_txt.get_height()) // 2))
+        pygame.display.update()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit(0)
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+                    self.run()
+
     def run(self):
         global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
@@ -191,6 +207,8 @@ class Play_mode():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit(0)
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+                    self.pause()
             coef = 1
             keys = pygame.key.get_pressed()
             if list(keys)[79: 83].count(1) == 2:  # срез включает кнопки стрелок
