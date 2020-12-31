@@ -51,6 +51,9 @@ BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/power_up.png"
                                      (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
 STAT_GALSS = pygame.transform.scale(pygame.image.load("Res/Assets/stat_glass.png"),
                                     (120, 80))
+DAMAGED_BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_power_up.png"),
+                                     (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
+
 ICON = ENEMY_SHIP_PNG
 BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
@@ -170,16 +173,17 @@ class Play_mode():
 
             if len(self.enemies) == 0:
                 self.lvl += 1
-                self.wave_len += 2
+                self.wave_len += 1
                 self.bull_shift += 1
-                if self.wave_len % 10 == 0:
+                if self.wave_len % 5 == 0:
                     self.player.lives += 1
                 if self.wave_len > 10 and self.wave_len % 2 != 0:
                     self.player.speed += 2
                 if self.enemy_shift != 7:
                     self.enemy_shift += 1
                 for i in range(self.wave_len):
-                    enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50), random.randrange(-1500, -100))
+                    enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50),
+                                       random.randrange(-1500, -100), 10 + self.wave_len * 2)
                     self.enemies.add(enemy)
             # Создвние бустеров
             rand = random.randint(0, self.BOOSTERS)
@@ -199,7 +203,7 @@ class Play_mode():
                     booster.player_collision(self.player)
                     self.boosters.remove(booster)
             boost_collision = pygame.sprite.groupcollide(self.player.bullets,
-                                                         self.boosters, True, True)
+                                                         self.boosters, True, False)
             if boost_collision:
                 boost_collision[list(boost_collision.keys())[0]][0].bullet_collision()
 
@@ -381,9 +385,10 @@ class Super_Ship(pygame.sprite.Sprite):
         pygame.draw.rect(window, (255, 0, 0),
                          (self.rect.x, self.rect.y - self.image.get_height() + 50,
                           self.image.get_width(), 5))
-        pygame.draw.rect(window, (0, 255, 0),
-                         (self.rect.x, self.rect.y - self.image.get_height() + 50,
-                          self.image.get_width() * (self.hp / self.max_hp), 5))
+        if self.hp > 0:
+            pygame.draw.rect(window, (0, 255, 0),
+                             (self.rect.x, self.rect.y - self.image.get_height() + 50,
+                              self.image.get_width() * (self.hp / self.max_hp), 5))
 
 
 class Super_Booster(pygame.sprite.Sprite):
@@ -400,7 +405,10 @@ class Super_Booster(pygame.sprite.Sprite):
         self.y = self.rect.y
 
     def bullet_collision(self):
-        self.kill()
+        if self.image == BOOSTER_PNG:
+            self.image = DAMAGED_BOOSTER_PNG
+        else:
+            self.kill()
 
 
 class Health_Booster(Super_Booster):
@@ -508,8 +516,8 @@ class Player_Ship(Super_Ship):
 
 
 class Enemy_Ship(Super_Ship):
-    def __init__(self, x, y, hp=10):
-        super().__init__(x, y, 30)
+    def __init__(self, x, y, hp):
+        super().__init__(x, y, hp)
         self.image = ENEMY_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
