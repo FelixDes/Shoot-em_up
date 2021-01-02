@@ -59,9 +59,9 @@ BATTLE_MUSIC = "Res/Audio/battle_music.mp3"
 DAMAGE_SOUND = "Res/Audio/damage.mp3"
 DEATH_SOUND = "Res/Audio/death_sound.mp3"
 SHOOT_SOUND = "Res/Audio/shoot.mp3"
-BASIC_FONT = pygame.font.SysFont("rog_fonts", 17)
-GAME_OVER_FONT = pygame.font.SysFont("rog_fonts", 40)
-PAUSE_FONT = pygame.font.SysFont("rog_fonts", 80)
+BASIC_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 17)
+GAME_OVER_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 40)
+PAUSE_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 80)
 time = 0
 exit_flag = False
 exp_s = pygame.sprite.Group()
@@ -251,6 +251,8 @@ class Play_mode():
 
                 if collide(enemy, self.player):
                     self.player.hp -= 10
+                    exp = Explosion(enemy.rect.x + 10, enemy.rect.y)
+                    exp_s.add(exp)
                     play_sound(DAMAGE_SOUND, 0, True)
                     self.enemies.remove(enemy)
 

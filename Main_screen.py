@@ -44,8 +44,8 @@ PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/play_button.p
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                               (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
 
-BASIC_FONT = pygame.font.SysFont("rog_fonts", 10)
-LOGO_FONT = pygame.font.SysFont("rog_fonts", 50)
+BASIC_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 10)
+LOGO_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 50)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
 logo_txt = LOGO_FONT.render("<astero>", 1, (255, 255, 255))
 
