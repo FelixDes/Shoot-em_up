@@ -4,6 +4,8 @@
 "w","400"
 "ship_x","60"
 "ship_y","60"
+"boss_ship_x","280"
+"boss_ship_y","160"
 "bullet_x","15"
 "bullet_y","30"
 "button_x","100"
