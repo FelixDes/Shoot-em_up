@@ -1,8 +1,8 @@
 import csv
+import datetime as dt
 import random
 import threading
 from math import sqrt
-import datetime as dt
 
 import pygame
 
@@ -43,14 +43,15 @@ DAMAGED_PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/d
                                                  (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 ENEMY_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                                         (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
-BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
+BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/shield_boss.png"),
                                        (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
-DAMAGED_BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_boss.png"),
+DAMAGED_BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_shield_boss.png"),
                                                (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
-VULNERABLE_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/vulnerable_boss.png"),
+VULNERABLE_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
                                              (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
-VULNERABLE_DAMAGED_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/vulnerable_damaged_boss.png"),
-                                             (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
+VULNERABLE_DAMAGED_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_boss.png"),
+                                                     (int(str_dict.get('boss_ship_x')),
+                                                      int(str_dict.get('boss_ship_y'))))
 BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
 ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
@@ -121,7 +122,9 @@ class Timer:
         if not self.start_time:
             return False
         self.curr_time = dt.datetime.now().time().strftime("%S%f")[:-3]
-        self.val = (int(self.curr_time) - self.start_time) * step if int(self.curr_time) > self.start_time else (self.max - self.start_time + int(self.curr_time)) * step
+        self.val = (int(self.curr_time) - self.start_time) * step if int(self.curr_time) > self.start_time else (
+                                                                                                                            self.max - self.start_time + int(
+                                                                                                                        self.curr_time)) * step
         if (self.max and self.val >= self.max) or self.val < 0:
             self.val = 0
             if self.loop:
@@ -372,7 +375,6 @@ class Play_mode():
             self.sc.blit(self.boss.image, self.boss.rect)
             self.boss.healthbar(self.sc)
         self.boosters.draw(self.sc)
-
 
         for exp in exp_s:
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
@@ -673,7 +675,6 @@ class Boss_Ship(Enemy_Ship):
                 self.image = VULNERABLE_BOSS_PNG
             elif self.curr_image == DAMAGED_BOSS_SHIP_PNG:
                 self.image = VULNERABLE_DAMAGED_BOSS_PNG
-
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
