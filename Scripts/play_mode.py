@@ -47,6 +47,10 @@ BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/boss.png"),
                                        (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
 DAMAGED_BOSS_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_boss.png"),
                                                (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
+VULNERABLE_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/vulnerable_boss.png"),
+                                             (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
+VULNERABLE_DAMAGED_BOSS_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/vulnerable_damaged_boss.png"),
+                                             (int(str_dict.get('boss_ship_x')), int(str_dict.get('boss_ship_y'))))
 BULLET_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
                                     (int(str_dict.get('bullet_x')), int(str_dict.get('bullet_y'))))
 ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Res/Assets/bullet.png"),
@@ -100,9 +104,10 @@ def stop_all_sound():
 
 # Класс для таймеров
 class Timer:
-    def __init__(self, val=0, max=None, loop=False):
+    def __init__(self, val=0, max=None, loop=False, name='DEAFULT'):
         self.val, self.max, self.loop = val, max, loop
         self.start_time = None
+        self.name = name
 
     def start(self, max=None):
         if max:
@@ -115,10 +120,13 @@ class Timer:
     def update(self, step=1):
         if not self.start_time:
             return False
-        self.val = (int(dt.datetime.now().time().strftime("%S%f")[:-3]) - self.start_time) * step
-        if self.max and self.val >= self.max:
+        self.curr_time = dt.datetime.now().time().strftime("%S%f")[:-3]
+        self.val = (int(self.curr_time) - self.start_time) * step if int(self.curr_time) > self.start_time else (self.max - self.start_time + int(self.curr_time)) * step
+        if (self.max and self.val >= self.max) or self.val < 0:
             self.val = 0
-            if not self.loop:
+            if self.loop:
+                self.start()
+            else:
                 self.stop()
             return True
         return False
@@ -126,12 +134,12 @@ class Timer:
     def get_time(self):
         return self.val
 
-    def restart(self):
+    def restart(self, max=None):
+        self.max = self.max if not max else max
         self.val = 0
 
     def isRunning(self):
-        if self.val >= self.max or self.val == 0:
-            self.val = 0
+        if not self.start_time:
             return False
         return True
 
@@ -234,8 +242,10 @@ class Play_mode():
                                        random.randrange(-1500, -100), 10 + self.wave_len * 2)
                     self.enemies.add(enemy)
                 # Босс появляется каждую boss_wave волну
-                if self.lvl % self.boss_wave == 0:
-                    self.boss = Boss_Ship(60, -160)
+                if self.lvl % self.boss_wave == 0 and not self.boss:
+                    self.boss = Boss_Ship(20, -160)
+                    self.boss.state_timer.start()
+
                 else:
                     self.boss = None
             # Создвние бустеров
@@ -292,6 +302,8 @@ class Play_mode():
             self.player.invincible.update()
             # Убийство босса
             if self.boss and self.boss.hp <= 0:
+                self.boss.state_timer.restart()
+                self.boss.state_timer.stop()
                 self.boss = None
 
             # Анимация появления босса
@@ -300,9 +312,9 @@ class Play_mode():
                     self.boss.mover(10)
                 if collide(self.boss, self.player):
                     self.player.take_damage(10)
-            if self.boss:
                 self.boss.shoot()
                 self.boss.move_bullets(self.boss_bull_shift, self.player)
+                self.boss.update_state()
 
             for enemy in self.enemies:
                 if enemy.hp <= 0:
@@ -334,7 +346,6 @@ class Play_mode():
                     exp_s.remove(exp)
                 else:
                     exp.c += 1
-
             self.player.move_bullets(-self.bull_shift, [*self.enemies, self.boss] if self.boss else self.enemies)
             self.redraw_window()
 
@@ -353,15 +364,15 @@ class Play_mode():
         lives_lable = BASIC_FONT.render(f"Lives: {self.player.lives}", 1, (255, 255, 255))
         self.player.blink()
         self.sc.blit(self.player.image, self.player.rect)
-        if self.boss:
-            self.sc.blit(self.boss.image, self.boss.rect)
-            self.boss.healthbar(self.sc)
         self.player.healthbar(self.sc)
         self.player.bullets.draw(self.sc)
+        self.enemies.draw(self.sc)
         if self.boss:
             self.boss.bullets.draw(self.sc)
-        self.enemies.draw(self.sc)
+            self.sc.blit(self.boss.image, self.boss.rect)
+            self.boss.healthbar(self.sc)
         self.boosters.draw(self.sc)
+
 
         for exp in exp_s:
             self.sc.blit(explosion[exp.c], (exp.x, exp.y))
@@ -583,7 +594,11 @@ class Player_Ship(Super_Ship):
             else:
                 for obj in objs:
                     if bullet.collision(obj):
-                        obj.hp -= self.player_dmg
+                        if obj.__class__.__name__ == 'Boss_Ship':
+                            if obj.can_be_hit:
+                                obj.hp -= self.player_dmg
+                        else:
+                            obj.hp -= self.player_dmg
                         if bullet in self.bullets:
                             self.bullets.remove(bullet)
                             exp = Explosion(bullet.x - 20, bullet.y - 20)
@@ -634,12 +649,31 @@ class Boss_Ship(Enemy_Ship):
     def __init__(self, x, y, hp=150):
         super().__init__(x, y, hp, im=BOSS_SHIP_PNG)
         self.image = BOSS_SHIP_PNG
+        self.curr_image = BOSS_SHIP_PNG
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
         self.regeneration_time = Timer(max=20000)
         self.regeneration_amount = 10
         # Задержка между выстрелами
-        self.shoot_timer = Timer(max=1000)
+        self.shoot_timer = Timer(max=500, name='SHOOOOOT')
+        self.hit_time = 5000
+        self.not_hit_time = 15000
+        self.state_timer = Timer(max=self.hit_time + self.not_hit_time, loop=True)
+        self.can_be_hit = False
+
+    # Метод обновления состояния босса
+    def update_state(self):
+        self.state_timer.update()
+        if self.state_timer.get_time() <= self.not_hit_time and self.can_be_hit:
+            self.can_be_hit = False
+            self.image = self.curr_image
+        elif self.state_timer.get_time() > self.not_hit_time:
+            self.can_be_hit = True
+            if self.curr_image == BOSS_SHIP_PNG:
+                self.image = VULNERABLE_BOSS_PNG
+            elif self.curr_image == DAMAGED_BOSS_SHIP_PNG:
+                self.image = VULNERABLE_DAMAGED_BOSS_PNG
+
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
@@ -649,9 +683,12 @@ class Boss_Ship(Enemy_Ship):
                 exp_s.add(
                     Explosion(self.rect.x + self.image.get_height() // 2, self.rect.y + self.image.get_width() // 2))
                 self.flag = True
-            self.image = DAMAGED_BOSS_SHIP_PNG
+            self.curr_image = DAMAGED_BOSS_SHIP_PNG
+            self.shoot_timer.restart(max=250)
+            if self.image == BOSS_SHIP_PNG:
+                self.image = DAMAGED_BOSS_SHIP_PNG
         else:
-            self.image = BOSS_SHIP_PNG
+            self.curr_image = BOSS_SHIP_PNG
             self.flag = False
         pygame.draw.rect(window, (255, 0, 0),
                          (self.rect.x, self.rect.y + self.image.get_height() + 10,
@@ -676,7 +713,8 @@ class Boss_Ship(Enemy_Ship):
                         bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2 - i * 10, self.rect.y + 20,
                                               self.bullet_image)
                         self.bullets.add(bullet)
-            bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2, self.rect.y + 20, self.bullet_image)
+            bullet = Super_Bullet((self.rect.width * random.random()) + self.rect.x, self.rect.y + 20,
+                                  self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
             self.shoot_timer.start()
