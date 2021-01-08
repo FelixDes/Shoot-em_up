@@ -163,7 +163,7 @@ class Play_mode():
         # TODO: переделать систему смерти босса чтобы не преходилось постоянно проверять, жив ли он.
         self.boss = None
         # Босс появляется каждую boss_wave волну
-        self.boss_wave = 1
+        self.boss_wave = 10
         self.boss_bull_shift = 7
         self.boosters = pygame.sprite.Group()
 
@@ -675,6 +675,8 @@ class Boss_Ship(Enemy_Ship):
                 self.image = VULNERABLE_BOSS_PNG
             elif self.curr_image == DAMAGED_BOSS_SHIP_PNG:
                 self.image = VULNERABLE_DAMAGED_BOSS_PNG
+        self.mask = pygame.mask.from_surface(self.image)
+
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
@@ -688,6 +690,7 @@ class Boss_Ship(Enemy_Ship):
             self.shoot_timer.restart(max=250)
             if self.image == BOSS_SHIP_PNG:
                 self.image = DAMAGED_BOSS_SHIP_PNG
+                self.mask = pygame.mask.from_surface(self.image)
         else:
             self.curr_image = BOSS_SHIP_PNG
             self.flag = False

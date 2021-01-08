@@ -27,13 +27,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Asset_added">
-      <change afterPath="$PROJECT_DIR$/Res/Assets/Shield_boss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Res/Assets/damaged_shield_boss.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/boss.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/boss.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/damaged_boss.png" beforeDir="false" afterPath="$PROJECT_DIR$/Res/Assets/damaged_boss.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +104,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -358,24 +354,6 @@
     <MESSAGE value="Boosters_damage_added" />
     <MESSAGE value="Asset_added" />
     <option name="LAST_COMMIT_MESSAGE" value="Asset_added" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1610135363674">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610135363674" />
-    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1610135363674">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610135363674" />
-    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1610135363674">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610135363674" />
-    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1610135363674">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610135363674" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
