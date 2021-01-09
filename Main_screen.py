@@ -1,5 +1,6 @@
 import csv
 import webbrowser
+import threading
 
 import pygame
 
@@ -78,8 +79,22 @@ def stop_all_sound():
         pygame.mixer.Channel(i).stop()
 
 
+def splash_window():
+    splash_surface = pygame.Surface((BACKGROUND.get_width(), BACKGROUND.get_height()))
+    pygame.draw.rect(splash_surface, (0, 0, 0),
+                     (0, 0, BACKGROUND.get_width(), BACKGROUND.get_height()))
+    # Место для чего-то красивого
+    sc.blit(splash_surface, (0, 0))
+    pygame.display.update()
+    t = threading.Timer(2, main_window)
+    t.run()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit(0)
+
+
 def main_window():
-    global event, settings_dict, shift
+    global event, settings_dict, shift, t
     update_settings()
     if not any(filter(lambda x: 'music' in x, sounds)):
         play_sound(FIRST_SCREEN, -1, True)
@@ -156,5 +171,5 @@ if __name__ == "__main__":
     sc = pygame.display.set_mode((int(str_dict.get("w")), int(str_dict.get("h"))))
     pygame.display.set_caption(str_dict.get("Name"))
     pygame.display.set_icon(ICON)
-    main_window()
+    splash_window()
     # run_play_mode()
