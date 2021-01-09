@@ -26,13 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Asset_added">
-      <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Res/Assets/damaged_player.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
-    </list>
+    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,14 +61,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
     </key>
   </component>
   <component name="RunManager">
@@ -299,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609615218842</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Player_assets_added">
+      <created>1610182391904</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1610182391904</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -354,29 +355,38 @@
     <MESSAGE value="Pause_added" />
     <MESSAGE value="Boosters_damage_added" />
     <MESSAGE value="Asset_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Asset_added" />
+    <MESSAGE value="Player_assets_added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player_assets_added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="656" y="107" key="#Main_screen" timestamp="1610179494495">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="107" key="#Main_screen/0.0.1920.1040@0.0.1920.1040" timestamp="1610179494495" />
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1610182327048">
+    <state x="558" y="81" key="CommitChangelistDialog2" timestamp="1610182390852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1610182327048">
+    <state x="558" y="81" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610182390852" />
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom" timestamp="1610189847413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1610182327048">
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610189847413" />
+    <state width="1877" height="401" key="GridCell.Tab.0.center" timestamp="1610189847413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1610182327048">
+    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610189847413" />
+    <state width="1877" height="401" key="GridCell.Tab.0.left" timestamp="1610189847413">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
+    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610189847413" />
+    <state width="1877" height="401" key="GridCell.Tab.0.right" timestamp="1610189847413">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610189847413" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1610182396389">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610182396389" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
