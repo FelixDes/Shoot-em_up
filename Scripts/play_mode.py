@@ -271,7 +271,9 @@ class Play_mode():
             boost_collision = pygame.sprite.groupcollide(self.player.bullets,
                                                          self.boosters, True, False)
             if boost_collision:
-                boost_collision[list(boost_collision.keys())[0]][0].bullet_collision()
+                booster = boost_collision[list(boost_collision.keys())[0]][0]
+                exp_s.add(Explosion(booster.rect.x - 5, booster.rect.y))
+                booster.bullet_collision()
 
             # цикл обработки событий
             for event in pygame.event.get():
