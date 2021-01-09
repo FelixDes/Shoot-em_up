@@ -1,6 +1,6 @@
 import csv
-import webbrowser
 import threading
+import webbrowser
 
 import pygame
 
@@ -44,7 +44,11 @@ PLAY_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/play_button.p
                                      (int(str_dict.get('Play_button_x')), int(str_dict.get('Play_button_y'))))
 ICON = pygame.transform.scale(pygame.image.load("Res/Assets/enemy.png"),
                               (int(str_dict.get('ship_x')), int(str_dict.get('ship_y'))))
-
+YANDEX_LOGO = pygame.image.load("Res/Assets/yandex_logo.png")
+PLAYER_SHIP_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
+                                         (int(str_dict.get('ship_y')) * 2, int(str_dict.get('ship_y')) * 2))
+p_ship_for_main = pygame.transform.scale(pygame.image.load("Res/Assets/player.png"),
+                                         (int(str_dict.get('ship_y')), int(str_dict.get('ship_y'))))
 BASIC_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 10)
 LOGO_FONT = pygame.font.Font("Res/Fonts/rog_fonts.ttf", 50)
 version_txt = BASIC_FONT.render(str_dict.get('Version'), 1, (255, 255, 255))
@@ -81,10 +85,17 @@ def stop_all_sound():
 
 def splash_window():
     splash_surface = pygame.Surface((BACKGROUND.get_width(), BACKGROUND.get_height()))
-    pygame.draw.rect(splash_surface, (0, 0, 0),
-                     (0, 0, BACKGROUND.get_width(), BACKGROUND.get_height()))
+    # pygame.draw.rect(splash_surface, (0, 0, 0),
+    #                  (0, 0, BACKGROUND.get_width(), BACKGROUND.get_height()))
     # Место для чего-то красивого
+
     sc.blit(splash_surface, (0, 0))
+    sc.blit(BACKGROUND, (0, 0))
+    sc.blit(YANDEX_LOGO,
+            ((sc.get_width() - YANDEX_LOGO.get_width()) // 2, (sc.get_height() - YANDEX_LOGO.get_height()) // 2 + 70))
+    sc.blit(PLAYER_SHIP_PNG,
+            ((sc.get_width() - PLAYER_SHIP_PNG.get_width()) // 2,
+             (sc.get_height() - PLAYER_SHIP_PNG.get_height()) // 2 - 120))
     pygame.display.update()
     t = threading.Timer(2, main_window)
     t.run()
@@ -139,6 +150,8 @@ def redraw_window():
     # Движение фона
     sc.blit(BACKGROUND, (0, BACKGROUND_offset - BACKGROUND.get_height()))
     sc.blit(BACKGROUND, (0, BACKGROUND_offset))
+    sc.blit(p_ship_for_main, ((sc.get_width() - p_ship_for_main.get_width())//2,
+                              (sc.get_height() - p_ship_for_main.get_height()) - 20))
     BACKGROUND_offset += BACKGROUND_speed
     if BACKGROUND_offset > BACKGROUND.get_height():
         BACKGROUND_offset = 0
