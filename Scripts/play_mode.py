@@ -59,8 +59,8 @@ ENEMY_BULLET_PNG = pygame.transform.rotate(pygame.transform.scale(pygame.image.l
                                                                    int(str_dict.get('bullet_y')))), 180)
 BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/power_up.png"),
                                      (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
-STAT_GALSS = pygame.transform.scale(pygame.image.load("Res/Assets/stat_glass.png"),
-                                    (120, 80))
+STAT_GLASS = pygame.transform.scale(pygame.image.load("Res/Assets/stat_glass.png"),
+                                    (80, 55))
 DAMAGED_BOOSTER_PNG = pygame.transform.scale(pygame.image.load("Res/Assets/damaged_power_up.png"),
                                              (int(str_dict.get('booster_x')), int(str_dict.get('booster_y'))))
 
@@ -384,7 +384,7 @@ class Play_mode():
         self.sc.blit(lvl_lable, (self.frame_w - lvl_lable.get_width() - 5, 3))
         self.sc.blit(lives_lable,
                      (self.frame_w - lives_lable.get_width() - 5, lvl_lable.get_height() + 3))
-        self.sc.blit(STAT_GALSS, (self.sc.get_width() - STAT_GALSS.get_width(), 0))
+        self.sc.blit(STAT_GLASS, (self.sc.get_width() - STAT_GLASS.get_width(), 0))
 
 
 class Super_Bullet(pygame.sprite.Sprite):
