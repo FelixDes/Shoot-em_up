@@ -8,7 +8,7 @@ import pygame
 
 pygame.font.init()
 
-
+# Заполнение словаря из файла
 def fill_str(name, pos):
     str_dict = {}
     with open(name, encoding="utf8") as csvfile:
@@ -21,7 +21,7 @@ def fill_str(name, pos):
 str_dict = fill_str('Res/CSV/const.csv', 1)
 settings_dict = dict()
 
-
+# Обновлнение настроек
 def update_settings():
     global settings_dict, dif_dict
     settings_dict = fill_str('Res/CSV/settings.csv', 1)
@@ -97,9 +97,7 @@ def play_sound(file, loops=0, start_sound=False):
     for i in sounds[file]:
         pygame.mixer.Channel(i).stop()
 
-    # Остановка всех звуков
-
-
+# Остановка всех звуков
 def stop_all_sound():
     for i in range(pygame.mixer.get_num_channels()):
         pygame.mixer.Channel(i).stop()
@@ -111,15 +109,15 @@ class Timer:
         self.val, self.max, self.loop = val, max, loop
         self.start_time = None
         self.name = name
-
+    # Запуск таймера
     def start(self, max=None):
         if max:
             self.max = max
         self.start_time = int(dt.datetime.now().time().strftime("%S%f")[:-3])
-
+    # Остановка
     def stop(self):
         self.start_time = None
-
+    # Обновление таймера
     def update(self, step=1):
         if not self.start_time:
             return False
@@ -135,20 +133,21 @@ class Timer:
                 self.stop()
             return True
         return False
-
+    # Возвращение текущшего времени
     def get_time(self):
+        self.update()
         return self.val
-
+    # Перезагрузка
     def restart(self, max=None):
         self.max = self.max if not max else max
         self.val = 0
-
+    # Идёт ли таймер
     def isRunning(self):
         if not self.start_time:
             return False
         return True
 
-
+# Основной класс (окно игры)
 class Play_mode():
     def __init__(self):
         self.frame_h = int(str_dict.get("h"))
@@ -176,7 +175,7 @@ class Play_mode():
 
         self.BACKGROUND_offset = 0
         self.BACKGROUND_speed = 2
-
+    # Экран проигрыша
     def end_game(self):
         global exit_flag
         time = 4
@@ -201,8 +200,9 @@ class Play_mode():
                     exit_flag = False
                     exit(0)
 
-            pygame.display.update()
 
+            pygame.display.update()
+    # Экран паузы
     def pause(self):
         pause_surface = pygame.Surface((self.frame_w, self.frame_h), pygame.SRCALPHA)
         pygame.draw.rect(pause_surface, (0, 0, 0, 128), (0, 0, self.frame_w, self.frame_h))
@@ -217,7 +217,7 @@ class Play_mode():
                     exit(0)
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
                     self.run()
-
+    # Экран игры
     def run(self):
         global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
@@ -234,7 +234,7 @@ class Play_mode():
 
             if self.player.lives <= 0 or self.player.hp <= 0:
                 self.end_game()
-
+            # Обновление волн
             if len(self.enemies) == 0 and not self.boss:
                 self.lvl += 1
                 self.wave_len += 1
@@ -358,7 +358,7 @@ class Play_mode():
                     exp.c += 1
             self.player.move_bullets(-self.bull_shift, [*self.enemies, self.boss] if self.boss else self.enemies)
             self.redraw_window()
-
+    # Прорисовка окна
     def redraw_window(self):
         pygame.display.update()
 
@@ -393,7 +393,7 @@ class Play_mode():
                      (self.frame_w - lives_lable.get_width() - 5, lvl_lable.get_height() + 3))
         self.sc.blit(STAT_GLASS, (self.sc.get_width() - STAT_GLASS.get_width(), 0))
 
-
+#  Класс пуль
 class Super_Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
         super().__init__()
@@ -404,24 +404,24 @@ class Super_Bullet(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.time = 0
         self.r = random.randint(15, 20)
-
+    # Передвижение пуль
     def mover(self, shift):
         self.y += shift
         self.rect.y += shift
-
+    # Зашла ли пуля за экран
     def off_screen(self, h):
         return not (h > self.y >= 0)
-
+    # Коллизия пуль
     def collision(self, obj):
         return collide(self, obj)
 
-
+# Коллизия объектов
 def collide(obj1, obj2):
     offset_x = obj2.rect.x - obj1.rect.x
     offset_y = obj2.rect.y - obj1.rect.y
     return obj1.mask.overlap(obj2.mask, (int(offset_x), int(offset_y))) != None
 
-
+# Класс кораблей
 class Super_Ship(pygame.sprite.Sprite):
     global exp_s
 
@@ -440,7 +440,7 @@ class Super_Ship(pygame.sprite.Sprite):
         self.bullet_amount = 1
         self.r = random.randint(30, 50)
         self.time = 0
-
+    # Движение пуль корабля
     def move_bullets(self, shift, obj):
         self.cool_down()
         for bullet in self.bullets:
@@ -454,13 +454,13 @@ class Super_Ship(pygame.sprite.Sprite):
                 self.bullets.remove(bullet)
                 exp = Explosion(bullet.x - 20, bullet.y - 20)
                 exp_s.add(exp)
-
+    # Перезарядка
     def cool_down(self):
         if self.bullets_cool_down >= self.COOLDOWN:
             self.bullets_cool_down = 0
         elif self.bullets_cool_down > 0:
             self.bullets_cool_down += 1
-
+    # Выстрел
     def shoot(self):
         if self.bullets_cool_down == 0:
             play_sound(SHOOT_SOUND, 0, True)
@@ -478,7 +478,7 @@ class Super_Ship(pygame.sprite.Sprite):
             bullet = Super_Bullet(self.rect.x + self.rect.size[0] // 2, self.rect.y + 20, self.bullet_image)
             self.bullets.add(bullet)
             self.bullets_cool_down = 1
-
+    # Отрисовка хп
     def healthbar(self, window):
         pygame.draw.rect(window, (255, 0, 0),
                          (self.rect.x, self.rect.y - self.image.get_height() + 50,
@@ -488,7 +488,7 @@ class Super_Ship(pygame.sprite.Sprite):
                              (self.rect.x, self.rect.y - self.image.get_height() + 50,
                               self.image.get_width() * (self.hp / self.max_hp), 5))
 
-
+# Класс бустеров
 class Super_Booster(pygame.sprite.Sprite):
     def __init__(self, image, x, speed):
         super().__init__()
@@ -497,63 +497,63 @@ class Super_Booster(pygame.sprite.Sprite):
         self.speed = speed
         self.x, self.y = x, self.rect.y
         self.mask = pygame.mask.from_surface(self.image)
-
+    # Движение
     def move(self):
         self.rect.y += self.speed
         self.y = self.rect.y
-
+    # Коллизия с пулями
     def bullet_collision(self):
         if self.image == BOOSTER_PNG:
             self.image = DAMAGED_BOOSTER_PNG
         else:
             self.kill()
 
-
+# Бустер (лечение коробля)
 class Health_Booster(Super_Booster):
     def __init__(self, x, speed):
         super().__init__(BOOSTER_PNG, x, speed)
-
+    # Эффект бустера
     def player_collision(self, player):
         if player.hp < player.max_hp:
             player.hp += random.randint(20, 50)
         if player.hp > player.max_hp:
             player.hp = player.max_hp
 
-
+# Бустер (+ 1 жизнь)
 class Live_Booster(Super_Booster):
     def __init__(self, x, speed):
         super().__init__(BOOSTER_PNG, x, speed)
-
+    # Эффект бустера
     def player_collision(self, player):
         player.lives += 1
 
-
+# Бустер (пули х3)
 class Gun_Booster(Super_Booster):
     def __init__(self, x, speed):
         super().__init__(BOOSTER_PNG, x, speed)
-
+    # Эффект бустера
     def player_collision(self, player):
         if player.bullet_amount <= 5:
             player.bullet_amount += 2
 
-
+# Бустер (+ к скорости)
 class Speed_Booster(Super_Booster):
     def __init__(self, x, speed):
         super().__init__(BOOSTER_PNG, x, speed)
-
+    # Эффект бустера
     def player_collision(self, player):
         player.speed = 12
         t = threading.Timer(5.0, self.normalize, args=(player,))
         t.start()
-
+    # Отмена эффекта бустера
     def normalize(self, player):
         player.speed = 7
 
-
+# Бустер (+ к силе)
 class Damage_Booster(Super_Booster):
     def __init__(self, x, speed):
         super().__init__(BOOSTER_PNG, x, speed)
-
+    # Эффект бустера
     def player_collision(self, player):
         if player.COOLDOWN >= 7:
             player.COOLDOWN -= 2
@@ -564,7 +564,7 @@ class Damage_Booster(Super_Booster):
     # def normalize(self, player):
     #     player.damage = 10
 
-
+#  Класс корабля игрока
 class Player_Ship(Super_Ship):
     def __init__(self, x, y, hp=100):
         super().__init__(x, y, hp)
@@ -593,7 +593,7 @@ class Player_Ship(Super_Ship):
             return True
         # Урон не получен
         return False
-
+     # Движение пуль корабля
     def move_bullets(self, shift, objs):
         self.cool_down()
         for bullet in self.bullets:
@@ -612,7 +612,7 @@ class Player_Ship(Super_Ship):
                             self.bullets.remove(bullet)
                             exp = Explosion(bullet.x - 20, bullet.y - 20)
                             exp_s.add(exp)
-
+    # Отрисовка хп
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
             if self.flag is False:
@@ -642,18 +642,18 @@ class Player_Ship(Super_Ship):
         else:
             self.image = self.prev_image
 
-
+# Класс корабля врагов
 class Enemy_Ship(Super_Ship):
     def __init__(self, x, y, hp, im=ENEMY_SHIP_PNG):
         super().__init__(x, y, hp, im=im)
         self.image = im
         self.bullet_image = ENEMY_BULLET_PNG
         self.mask = pygame.mask.from_surface(self.image)
-
+    # Движение корабля
     def mover(self, shift):
         self.rect.y += shift
 
-
+# Класс корабля босса
 class Boss_Ship(Enemy_Ship):
     def __init__(self, x, y, hp=150):
         super().__init__(x, y, hp, im=BOSS_SHIP_PNG)
@@ -683,7 +683,7 @@ class Boss_Ship(Enemy_Ship):
             elif self.curr_image == DAMAGED_BOSS_SHIP_PNG:
                 self.image = VULNERABLE_DAMAGED_BOSS_PNG
         self.mask = pygame.mask.from_surface(self.image)
-
+    # Отрисовка хп
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:
             if self.flag is False:
@@ -706,7 +706,7 @@ class Boss_Ship(Enemy_Ship):
         pygame.draw.rect(window, (0, 255, 0),
                          (self.rect.x, self.rect.y + self.image.get_height() + 10,
                           self.image.get_width() * (self.hp / self.max_hp), 10))
-
+    # Выстрел
     def shoot(self):
         self.shoot_timer.update()
         if not self.shoot_timer.isRunning():
@@ -729,7 +729,7 @@ class Boss_Ship(Enemy_Ship):
             self.bullets_cool_down = 1
             self.shoot_timer.start()
 
-
+#  Класс взрывов
 class Explosion(pygame.sprite.Sprite):
     def __init__(self, x, y, delay=1):
         super().__init__()

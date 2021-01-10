@@ -4,7 +4,7 @@ import pygame
 # Класс для слайдера. В будущем возможно прийдётся самим сделать.
 from pygame_widgets import Slider
 
-
+# Заполнение словаря из файла
 def fill_str(name):
     str_dict = {}
     with open(name, encoding="utf8") as csvfile:
@@ -17,7 +17,7 @@ def fill_str(name):
 str_dict = fill_str('Res/CSV/const.csv')
 settings_dict = dict()
 
-
+# Обновление настроек
 def update_settings():
     global settings_dict
     settings_dict = fill_str('Res/CSV/settings.csv')
@@ -31,7 +31,7 @@ easy_b = medium_b = hard_b = BACK_BUTTON
 MAIN_FONT = pygame.font.SysFont("rog_fonts", 20)
 settings_txt = MAIN_FONT.render("Settings", True, (255, 255, 255))
 
-
+# Класс настроек
 class Settings():
     def __init__(self, sounds):
         self.frame_h = int(str_dict.get("h"))
@@ -55,11 +55,12 @@ class Settings():
         self.BACKGROUND_speed = 3
         self.FPS = int(str_dict.get("FPS"))
         self.clock = pygame.time.Clock()
-
+    # Запуск
     def run(self):
         global event
         while True:
             events = pygame.event.get()
+            # Обновление слайдеров
             self.music_vol_slider.listen(events)
             self.sound_vol_slider.listen(events)
             self.clock.tick(self.FPS)
@@ -95,7 +96,7 @@ class Settings():
                             writer.writerows(write)
                         return
             self.redraw_window()
-
+    # Перерисовка окна
     def redraw_window(self):
         # Текст около слайдеров
         sound_text = MAIN_FONT.render("Sound:", True, (170, 170, 170))

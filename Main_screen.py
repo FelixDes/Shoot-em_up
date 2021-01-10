@@ -7,7 +7,7 @@ import pygame
 from Scripts.play_mode import Play_mode
 from Scripts.settings_class import Settings
 
-
+# Заполнение словаря из файла
 def fill_str(name):
     str_dict = {}
     with open(name, encoding="utf8") as csvfile:
@@ -22,7 +22,7 @@ settings_dict = dict()
 FPS = int(str_dict.get("FPS"))
 clock = pygame.time.Clock()
 
-
+# Обновление настроек
 def update_settings():
     global settings_dict
     settings_dict = fill_str('Res/CSV/settings.csv')
@@ -82,7 +82,7 @@ def stop_all_sound():
     for i in range(pygame.mixer.get_num_channels()):
         pygame.mixer.Channel(i).stop()
 
-
+# Окно загрузки
 def splash_window():
     splash_surface = pygame.Surface((BACKGROUND.get_width(), BACKGROUND.get_height()))
     # pygame.draw.rect(splash_surface, (0, 0, 0),
@@ -103,7 +103,7 @@ def splash_window():
         if event.type == pygame.QUIT:
             exit(0)
 
-
+# Окно меню
 def main_window():
     global event, settings_dict, shift, t
     update_settings()
@@ -138,7 +138,7 @@ def main_window():
                     webbrowser.open("https://ru.wikipedia.org/wiki/Shoot_%E2%80%99em_up")
         redraw_window()
 
-
+# Перерисовка окна
 def redraw_window():
     global shift, time, BACKGROUND_offset, BACKGROUND_speed
     if time == 50:
@@ -172,7 +172,7 @@ def run_settings():
     s.run()
     main_window()
 
-
+# Запуск игры
 def run_play_mode():
     m = Play_mode()
     m.run()
