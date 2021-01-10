@@ -229,7 +229,6 @@ class Play_mode():
 
         self.player.COOLDOWN = int(dif_dict.get("Cooldown"))
         self.player.lives = int(dif_dict.get("Player_lives"))
-        self.player.lives = 9
         self.DIFFICULTY = str_dict.get("Difficulty")
         self.BOOSTERS = int(dif_dict.get("Boosters"))
         while True:
@@ -570,7 +569,7 @@ class Damage_Booster(Super_Booster):
 
 #  Класс корабля игрока
 class Player_Ship(Super_Ship):
-    def __init__(self, x, y, hp=10000000):
+    def __init__(self, x, y, hp=100):
         super().__init__(x, y, hp)
         self.image = PLAYER_SHIP_PNG
         self.bullet_image = BULLET_PNG
