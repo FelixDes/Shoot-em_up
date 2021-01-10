@@ -150,7 +150,7 @@ def redraw_window():
     # Движение фона
     sc.blit(BACKGROUND, (0, BACKGROUND_offset - BACKGROUND.get_height()))
     sc.blit(BACKGROUND, (0, BACKGROUND_offset))
-    sc.blit(p_ship_for_main, ((sc.get_width() - p_ship_for_main.get_width())//2,
+    sc.blit(p_ship_for_main, ((sc.get_width() - p_ship_for_main.get_width()) // 2,
                               (sc.get_height() - p_ship_for_main.get_height()) - 20))
     BACKGROUND_offset += BACKGROUND_speed
     if BACKGROUND_offset > BACKGROUND.get_height():

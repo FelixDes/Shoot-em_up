@@ -1,7 +1,7 @@
 import csv
 
 import pygame
-# Класс для слайдера. В будущем возможно прийдётся самим сделать.
+# Класс для слайдера. В будущем возможно пийдётся самим сделать.
 from pygame_widgets import Slider
 
 # Заполнение словаря из файла
@@ -27,7 +27,12 @@ update_settings()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 BACK_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/back_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
-easy_b = medium_b = hard_b = BACK_BUTTON
+easy_b = pygame.transform.scale(pygame.image.load("Res/Assets/easy.png"),
+                                     (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
+medium_b = pygame.transform.scale(pygame.image.load("Res/Assets/medium.png"),
+                                     (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
+hard_b = pygame.transform.scale(pygame.image.load("Res/Assets/hard.png"),
+                                     (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
 MAIN_FONT = pygame.font.SysFont("rog_fonts", 20)
 settings_txt = MAIN_FONT.render("Settings", True, (255, 255, 255))
 

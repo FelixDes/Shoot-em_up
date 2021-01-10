@@ -123,8 +123,8 @@ class Timer:
             return False
         self.curr_time = dt.datetime.now().time().strftime("%S%f")[:-3]
         self.val = (int(self.curr_time) - self.start_time) * step if int(self.curr_time) > self.start_time else (
-                                                                                                                            self.max - self.start_time + int(
-                                                                                                                        self.curr_time)) * step
+                                                                                                                        self.max - self.start_time + int(
+                                                                                                                    self.curr_time)) * step
         if (self.max and self.val >= self.max) or self.val < 0:
             self.val = 0
             if self.loop:
@@ -186,9 +186,9 @@ class Play_mode():
         while True:
             lost_count += 1
             if lost_count > int(str_dict.get("FPS")) * 3:
-                with open('Main_screen.py', "r") as file:
-                    exec(file.read())
-                    exit(0)
+                # with open('Main_screen.py', "r") as file:
+                #     exec(file.read(0))
+                exit(0)
 
             self.sc.fill((0, 0, 0))
             game_over_txt = GAME_OVER_FONT.render(f"GAME OVER", 1, (255, 255, 255))
@@ -204,6 +204,7 @@ class Play_mode():
             pygame.display.update()
     # Экран паузы
     def pause(self):
+        stop_all_sound()
         pause_surface = pygame.Surface((self.frame_w, self.frame_h), pygame.SRCALPHA)
         pygame.draw.rect(pause_surface, (0, 0, 0, 128), (0, 0, self.frame_w, self.frame_h))
         self.sc.blit(pause_surface, (0, 0))
@@ -219,13 +220,16 @@ class Play_mode():
                     self.run()
     # Экран игры
     def run(self):
+
         global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
         self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
                                   self.frame_h - int(str_dict.get('ship_y')) - 30,
                                   int(dif_dict.get("Player_hp")))
+
         self.player.COOLDOWN = int(dif_dict.get("Cooldown"))
         self.player.lives = int(dif_dict.get("Player_lives"))
+        self.player.lives = 9
         self.DIFFICULTY = str_dict.get("Difficulty")
         self.BOOSTERS = int(dif_dict.get("Boosters"))
         while True:
@@ -294,7 +298,7 @@ class Play_mode():
             # Выход
             if keys[pygame.K_ESCAPE]:
                 stop_all_sound()
-                break
+                self.end_game()
             movement = int(self.player.speed * coef)
             if keys[pygame.K_RIGHT] and self.player.rect.x + self.player.speed + int(
                     str_dict.get("ship_x")) < self.frame_w:
@@ -566,7 +570,7 @@ class Damage_Booster(Super_Booster):
 
 #  Класс корабля игрока
 class Player_Ship(Super_Ship):
-    def __init__(self, x, y, hp=100):
+    def __init__(self, x, y, hp=10000000):
         super().__init__(x, y, hp)
         self.image = PLAYER_SHIP_PNG
         self.bullet_image = BULLET_PNG
