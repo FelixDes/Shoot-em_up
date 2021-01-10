@@ -154,17 +154,10 @@ class Play_mode():
         self.frame_h = int(str_dict.get("h"))
         self.frame_w = int(str_dict.get("w"))
         self.FPS = int(str_dict.get("FPS"))
-        self.DIFFICULTY = str_dict.get("Difficulty")
-        self.BOOSTERS = int(dif_dict.get("Boosters"))
         self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
         pygame.display.set_caption(str_dict.get("Name"))
         pygame.display.set_icon(ICON)
         self.lvl = 0
-        self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
-                                  self.frame_h - int(str_dict.get('ship_y')) - 30,
-                                  int(dif_dict.get("Player_hp")))
-        self.player.COOLDOWN = int(dif_dict.get("Cooldown"))
-        self.player.lives = int(dif_dict.get("Player_lives"))
         self.enemies = pygame.sprite.Group()
         # TODO: переделать систему смерти босса чтобы не преходилось постоянно проверять, жив ли он.
         self.boss = None
@@ -172,7 +165,6 @@ class Play_mode():
         self.boss_wave = 10
         self.boss_bull_shift = 7
         self.boosters = pygame.sprite.Group()
-
         self.wave_len = 0
         self.enemy_shift = 2
         self.bull_shift = 7
@@ -229,6 +221,13 @@ class Play_mode():
     def run(self):
         global exp_s
         play_sound(BATTLE_MUSIC, -1, True)
+        self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
+                                  self.frame_h - int(str_dict.get('ship_y')) - 30,
+                                  int(dif_dict.get("Player_hp")))
+        self.player.COOLDOWN = int(dif_dict.get("Cooldown"))
+        self.player.lives = int(dif_dict.get("Player_lives"))
+        self.DIFFICULTY = str_dict.get("Difficulty")
+        self.BOOSTERS = int(dif_dict.get("Boosters"))
         while True:
             #  self.player.shoot()
             self.clock.tick(self.FPS)

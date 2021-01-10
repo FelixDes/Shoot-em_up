@@ -27,6 +27,7 @@ update_settings()
 BACKGROUND = pygame.image.load("Res/Assets/space.png")
 BACK_BUTTON = pygame.transform.scale(pygame.image.load("Res/Assets/back_button.png"),
                                      (int(str_dict.get('button_x')), int(str_dict.get('button_y'))))
+easy_b = medium_b = hard_b = BACK_BUTTON
 MAIN_FONT = pygame.font.SysFont("rog_fonts", 20)
 settings_txt = MAIN_FONT.render("Settings", True, (255, 255, 255))
 
@@ -40,6 +41,7 @@ class Settings():
         self.mus_curr_vol = 0
         self.snd_curr_vol = 0
         self.sounds = sounds
+        self.diff = 'medium'
         # Инициализация слайдеров, координаты наверное можно лучше сделать
         self.sound_vol_slider = Slider(self.sc, self.frame_w * 2 // 5, self.frame_h * 1 // 10, 100, 20,
                                        colour=(100, 100, 100), handleColour=(40, 40, 40))
@@ -69,6 +71,13 @@ class Settings():
                     rect = pygame.Rect(0, self.sc.get_height() - int(str_dict.get('button_y')),
                                        int(str_dict.get('button_x')),
                                        int(str_dict.get('button_y')))
+                    # Взаимодействие с кнопками сложности
+                    if self.easy_b_rect.collidepoint(pos):
+                        self.diff = 'easy'
+                    elif self.medium_b_rect.collidepoint(pos):
+                        self.diff = 'medium'
+                    elif self.hard_b_rect.collidepoint(pos):
+                        self.diff = 'hard'
                     # Выход из настроек. Сохранение настроек.
                     if rect.collidepoint(pos):
                         with open('Res/CSV/settings.csv', encoding="utf8") as csvfile:
@@ -79,6 +88,7 @@ class Settings():
                             # В change записываются изменённые настройки
                             change['music_volume'] = self.music_vol_slider.getValue() / 100
                             change['sound_volume'] = self.sound_vol_slider.getValue() / 100
+                            change['difficulty'] = self.diff
                             write = list(map(lambda x: [x, change[x]], change.keys()))
                             writer = csv.writer(open('Res/CSV/settings.csv', 'w', encoding="utf8", newline=''),
                                                 delimiter=',', quoting=csv.QUOTE_ALL)
@@ -98,6 +108,10 @@ class Settings():
         if self.BACKGROUND_offset > BACKGROUND.get_height():
             self.BACKGROUND_offset = 0
         self.sc.blit(BACK_BUTTON, (0, self.sc.get_height() - int(str_dict.get('button_y'))))
+        # Кнопки сложности
+        self.easy_b_rect = self.sc.blit(easy_b, (40, 180))
+        self.medium_b_rect = self.sc.blit(medium_b, (150, 180))
+        self.hard_b_rect = self.sc.blit(hard_b, (260, 180))
         # Текст около слайдеров
         self.sc.blit(sound_text, (self.frame_w * 1 // 10 - 10, self.frame_h * 1 // 10-5))
         self.sc.blit(music_text, (self.frame_w * 1 // 10 - 1, self.frame_h * 2 // 10-5))
