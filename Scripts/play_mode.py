@@ -9,22 +9,24 @@ import pygame
 pygame.font.init()
 
 
-def fill_str(name):
+def fill_str(name, pos):
     str_dict = {}
     with open(name, encoding="utf8") as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
-            str_dict[row[0]] = row[1]
+            str_dict[row[0]] = row[pos]
         return str_dict
 
 
-str_dict = fill_str('Res/CSV/const.csv')
+str_dict = fill_str('Res/CSV/const.csv', 1)
 settings_dict = dict()
 
 
 def update_settings():
-    global settings_dict
-    settings_dict = fill_str('Res/CSV/settings.csv')
+    global settings_dict, dif_dict
+    settings_dict = fill_str('Res/CSV/settings.csv', 1)
+    dif_dict = fill_str('Res/CSV/diff.csv',
+                        ["easy", "medium", "hard"].index(settings_dict['difficulty']) + 1)
 
 
 update_settings()
@@ -152,13 +154,17 @@ class Play_mode():
         self.frame_h = int(str_dict.get("h"))
         self.frame_w = int(str_dict.get("w"))
         self.FPS = int(str_dict.get("FPS"))
-        self.BOOSTERS = int(str_dict.get("Boosters"))
+        self.DIFFICULTY = str_dict.get("Difficulty")
+        self.BOOSTERS = int(dif_dict.get("Boosters"))
         self.sc = pygame.display.set_mode((self.frame_w, self.frame_h))
         pygame.display.set_caption(str_dict.get("Name"))
         pygame.display.set_icon(ICON)
         self.lvl = 0
         self.player = Player_Ship(self.frame_w // 2 - int(str_dict.get('ship_x')) // 2,
-                                  self.frame_h - int(str_dict.get('ship_y')) - 30)
+                                  self.frame_h - int(str_dict.get('ship_y')) - 30,
+                                  int(dif_dict.get("Player_hp")))
+        self.player.COOLDOWN = int(dif_dict.get("Cooldown"))
+        self.player.lives = int(dif_dict.get("Player_lives"))
         self.enemies = pygame.sprite.Group()
         # TODO: переделать систему смерти босса чтобы не преходилось постоянно проверять, жив ли он.
         self.boss = None
@@ -568,7 +574,7 @@ class Player_Ship(Super_Ship):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x, y
-        self.lives = 3
+        self.max_hp = self.hp
         self.speed = 7
         self.bullet_amount = 1
         self.flag = False
@@ -678,7 +684,6 @@ class Boss_Ship(Enemy_Ship):
             elif self.curr_image == DAMAGED_BOSS_SHIP_PNG:
                 self.image = VULNERABLE_DAMAGED_BOSS_PNG
         self.mask = pygame.mask.from_surface(self.image)
-
 
     def healthbar(self, window):
         if self.hp < self.max_hp // 2:

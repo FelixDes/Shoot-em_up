@@ -26,10 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Asset_added">
-      <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Boosters_explosions">
+      <change afterPath="$PROJECT_DIR$/Res/CSV/diff.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/const.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/const.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +104,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -298,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609615218842</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Boosters_explosions">
+      <created>1610206111071</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1610206111071</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,7 +360,8 @@
     <MESSAGE value="Pause_added" />
     <MESSAGE value="Boosters_damage_added" />
     <MESSAGE value="Asset_added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Asset_added" />
+    <MESSAGE value="Boosters_explosions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Boosters_explosions" />
   </component>
   <component name="WindowStateProjectService">
     <state x="656" y="107" key="#Main_screen" timestamp="1610179494495">
@@ -364,25 +372,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1610200528733" />
-    <state width="1515" height="289" key="GridCell.Tab.0.bottom" timestamp="1610205876993">
+    <state width="1515" height="289" key="GridCell.Tab.0.bottom" timestamp="1610273616216">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610205876993" />
+    <state width="1515" height="289" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610273616216" />
     <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1515" height="289" key="GridCell.Tab.0.center" timestamp="1610205876993">
+    <state width="1515" height="289" key="GridCell.Tab.0.center" timestamp="1610273616215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610205876993" />
+    <state width="1515" height="289" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610273616215" />
     <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1515" height="289" key="GridCell.Tab.0.left" timestamp="1610205876993">
+    <state width="1515" height="289" key="GridCell.Tab.0.left" timestamp="1610273616215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610205876993" />
+    <state width="1515" height="289" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610273616215" />
     <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
-    <state width="1515" height="289" key="GridCell.Tab.0.right" timestamp="1610205876993">
+    <state width="1515" height="289" key="GridCell.Tab.0.right" timestamp="1610273616215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="289" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610205876993" />
+    <state width="1515" height="289" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610273616215" />
     <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1610199235404">
       <screen x="0" y="0" width="1536" height="824" />
@@ -404,14 +412,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610205401445" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1610209150401">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610209150401" />
     <state x="372" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610200665237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="372" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1610200665237" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610200360801">
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610271664276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610200360801" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610271664276" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610201478665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
