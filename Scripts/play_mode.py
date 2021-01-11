@@ -3,6 +3,7 @@ import datetime as dt
 import random
 import threading
 from math import sqrt
+import sys
 
 import pygame
 
@@ -198,7 +199,7 @@ class Play_mode():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or exit_flag:
                     exit_flag = False
-                    exit(0)
+                    sys.exit()
 
 
             pygame.display.update()
@@ -215,7 +216,7 @@ class Play_mode():
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    exit(0)
+                    sys.exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
                     self.run()
     # Экран игры
@@ -286,7 +287,7 @@ class Play_mode():
             # цикл обработки событий
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    exit(0)
+                    sys.exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
                     self.pause()
             coef = 1

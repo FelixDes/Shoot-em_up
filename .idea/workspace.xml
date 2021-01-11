@@ -26,11 +26,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="">
+    <list default="true" id="01f46470-dc06-4d66-8cea-46979fe7c7ee" name="Default Changelist" comment="Difficulty_beta">
       <change beforePath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shoot-em_up-group.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main_screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Res/CSV/settings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Res/CSV/settings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scripts/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/play_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/settings_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/settings_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,14 +69,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
-      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Audio" />
       <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\CSV" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res\Assets" />
+      <recent name="C:\Users\pipa\PycharmProjects\Shoot-em_up-group\Res" />
     </key>
   </component>
   <component name="RunManager">
@@ -370,5 +373,75 @@
     <MESSAGE value="Boosters_explosions" />
     <MESSAGE value="Difficulty_beta" />
     <option name="LAST_COMMIT_MESSAGE" value="Difficulty_beta" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="656" y="107" key="#Main_screen" timestamp="1610179494495">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="107" key="#Main_screen/0.0.1920.1040@0.0.1920.1040" timestamp="1610179494495" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1610200528733">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1610200528733" />
+    <state width="1515" height="2" key="GridCell.Tab.0.bottom" timestamp="1610390742262">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610390742262" />
+    <state width="1877" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
+    <state width="1515" height="2" key="GridCell.Tab.0.center" timestamp="1610390742261">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610390742261" />
+    <state width="1877" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
+    <state width="1515" height="2" key="GridCell.Tab.0.left" timestamp="1610390742261">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610390742261" />
+    <state width="1877" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
+    <state width="1515" height="2" key="GridCell.Tab.0.right" timestamp="1610390742262">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610390742262" />
+    <state width="1877" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1610182327048" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1610199235404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610199235404" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1610199235404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1610199235404" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1610199235404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1610199235404" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1610199235404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1610199235404" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1610389395522">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610389395522" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1610274041833">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610274041833" />
+    <state x="372" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610200665237">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="372" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1610200665237" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610389884811">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610389884811" />
+    <state x="93" y="93" width="1350" height="638" key="dock-window-1" timestamp="1610390727249">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1610390727249" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610201478665">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1610201478665" />
   </component>
 </project>

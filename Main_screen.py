@@ -1,6 +1,7 @@
 import csv
 import threading
 import webbrowser
+import sys
 
 import pygame
 
@@ -101,7 +102,7 @@ def splash_window():
     t.run()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            exit(0)
+            sys.exit()
 
 # Окно меню
 def main_window():
@@ -113,7 +114,7 @@ def main_window():
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit(0)
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 # Кнопка настроек

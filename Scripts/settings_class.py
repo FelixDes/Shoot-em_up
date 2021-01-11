@@ -1,4 +1,5 @@
 import csv
+import sys
 
 import pygame
 # Класс для слайдера. В будущем возможно пийдётся самим сделать.
@@ -71,7 +72,7 @@ class Settings():
             self.clock.tick(self.FPS)
             for event in events:
                 if event.type == pygame.QUIT:
-                    exit(0)
+                    sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     rect = pygame.Rect(0, self.sc.get_height() - int(str_dict.get('button_y')),
