@@ -86,10 +86,6 @@ def stop_all_sound():
 # Окно загрузки
 def splash_window():
     splash_surface = pygame.Surface((BACKGROUND.get_width(), BACKGROUND.get_height()))
-    # pygame.draw.rect(splash_surface, (0, 0, 0),
-    #                  (0, 0, BACKGROUND.get_width(), BACKGROUND.get_height()))
-    # Место для чего-то красивого
-
     sc.blit(splash_surface, (0, 0))
     sc.blit(BACKGROUND, (0, 0))
     sc.blit(YANDEX_LOGO,
