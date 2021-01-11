@@ -248,10 +248,6 @@ class Play_mode():
                     self.player.speed += 2
                 if self.enemy_shift != 7:
                     self.enemy_shift += 1
-                for i in range(self.wave_len):
-                    enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50),
-                                       random.randrange(-1500, -100), 10 + self.wave_len * 2)
-                    self.enemies.add(enemy)
                 # Босс появляется каждую boss_wave волну
                 if self.lvl % self.boss_wave == 0 and not self.boss:
                     self.boss = Boss_Ship(20, -160)
@@ -259,6 +255,10 @@ class Play_mode():
 
                 else:
                     self.boss = None
+                    for i in range(self.wave_len):
+                        enemy = Enemy_Ship(random.randrange(50, self.frame_w - 50),
+                                           random.randrange(-1500, -100), 10 + self.wave_len * 2)
+                        self.enemies.add(enemy)
             # Создвние бустеров
             rand = random.randint(0, self.BOOSTERS)
             if rand == 1:
